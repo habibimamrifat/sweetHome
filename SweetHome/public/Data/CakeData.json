@@ -1,0 +1,57 @@
+[
+  {
+    "shop_id": "shop123",
+    "shop_owner_id": "owner456",
+    "cake_id": "cake789",
+    "price": 25.99,
+    "cake_Name": "Chocolate Cake",
+    "cake_pic": "https://st4.depositphotos.com/10614052/25239/i/450/depositphotos_252391082-stock-photo-sweet-chocolate-cake-on-wooden.jpg",
+    "cakeDetail": "Delicious and moist chocolate cake with rich chocolate ganache.",
+    "deliveryWithin": "1.5 hours",
+    "ratings": 4.8
+  },
+  {
+    "shop_id": "shop124",
+    "shop_owner_id": "owner457",
+    "cake_id": "cake790",
+    "price": 30.99,
+    "cake_Name": "Vanilla Cake",
+    "cake_pic": "https://www.fnp.com/images/pr/l/v20221205202048/black-forest-cake-half-kg_1.jpg",
+    "cakeDetail": "Classic vanilla cake with creamy vanilla buttercream.",
+    "deliveryWithin": "2 hours",
+    "ratings": 4.6
+  },
+  {
+    "shop_id": "shop125",
+    "shop_owner_id": "owner458",
+    "cake_id": "cake791",
+    "price": 28.99,
+    "cake_Name": "Red Velvet Cake",
+    "cake_pic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw8_T3omRjWs38MXCleGxN1BeNHmZLBBFI-Q&s",
+    "cakeDetail": "Soft and moist red velvet cake with cream cheese frosting.",
+    "deliveryWithin": "3 hours",
+    "ratings": 4.7
+  },
+  {
+    "shop_id": "shop126",
+    "shop_owner_id": "owner459",
+    "cake_id": "cake792",
+    "price": 32.99,
+    "cake_Name": "Cheesecake",
+    "cake_pic": "https://sugarspunrun.com/wp-content/uploads/2022/03/Carrot-Cake-Cheesecake-1-of-7.jpg",
+    "cakeDetail": "Creamy cheesecake with a graham cracker crust.",
+    "deliveryWithin": "4 hours",
+    "ratings": 4.9
+  },
+  {
+    "shop_id": "shop127",
+    "shop_owner_id": "owner460",
+    "cake_id": "cake793",
+    "price": 27.99,
+    "cake_Name": "Carrot Cake",
+    "cake_pic": "https://static01.nyt.com/images/2020/11/01/dining/Carrot-Cake-textless/Carrot-Cake-textless-threeByTwoMediumAt2X.jpg",
+    "cakeDetail": "Moist carrot cake with cream cheese frosting and a hint of cinnamon.",
+    "deliveryWithin": "2.5 hours",
+    "ratings": 4.7
+  }
+]

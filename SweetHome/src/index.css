@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.loading-dots{
+    background-color: rgba(10, 10, 228, 0.767);
+  }

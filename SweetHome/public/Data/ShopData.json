@@ -1,0 +1,62 @@
+[
+  {
+    "shop_id": "shop123",
+    "shop_owner_id": "owner456",
+    "shop_name": "Sweet Delights Bakery",
+    "shop_address": "123 Cake Street, Bakersville, CA 94016",
+    "shop_contact": "+1-234-567-8901",
+    "shop_email": "contact@sweetdelights.com",
+    "shop_description": "A family-owned bakery offering a wide variety of delicious cakes and pastries made from the finest ingredients.",
+    "shop_rating": 4.8,
+    "shop_banner": "https://picsum.photos/id/1011/800/300",
+    "shop_logo": "https://picsum.photos/id/1011/200/200"
+  },
+  {
+    "shop_id": "shop124",
+    "shop_owner_id": "owner457",
+    "shop_name": "Heavenly Cakes",
+    "shop_address": "456 Dessert Lane, Sweet City, TX 75001",
+    "shop_contact": "+1-345-678-9012",
+    "shop_email": "info@heavenlycakes.com",
+    "shop_description": "Heavenly Cakes specializes in creating beautiful and delicious custom cakes for all occasions.",
+    "shop_rating": 4.7,
+    "shop_banner": "https://picsum.photos/id/1012/800/300",
+    "shop_logo": "https://picsum.photos/id/1012/200/200"
+  },
+  {
+    "shop_id": "shop125",
+    "shop_owner_id": "owner458",
+    "shop_name": "Cake Emporium",
+    "shop_address": "789 Frosting Avenue, Cupcake Town, FL 33101",
+    "shop_contact": "+1-456-789-0123",
+    "shop_email": "order@cakeemporium.com",
+    "shop_description": "At Cake Emporium, we offer a wide range of cakes, from classic flavors to innovative creations.",
+    "shop_rating": 4.6,
+    "shop_banner": "https://picsum.photos/id/1013/800/300",
+    "shop_logo": "https://picsum.photos/id/1013/200/200"
+  },
+  {
+    "shop_id": "shop126",
+    "shop_owner_id": "owner459",
+    "shop_name": "The Cake Factory",
+    "shop_address": "101 Cupcake Boulevard, Frost City, NY 10001",
+    "shop_contact": "+1-567-890-1234",
+    "shop_email": "support@thecakefactory.com",
+    "shop_description": "The Cake Factory is known for its high-quality ingredients and a wide range of delicious cakes and desserts.",
+    "shop_rating": 4.9,
+    "shop_banner": "https://picsum.photos/id/1014/800/300",
+    "shop_logo": "https://picsum.photos/id/1014/200/200"
+  },
+  {
+    "shop_id": "shop127",
+    "shop_owner_id": "owner460",
+    "shop_name": "Gourmet Bakes",
+    "shop_address": "202 Confectionery Drive, Baker City, IL 60601",
+    "shop_contact": "+1-678-901-2345",
+    "shop_email": "contact@gourmetbakes.com",
+    "shop_description": "Gourmet Bakes offers a wide selection of gourmet cakes and desserts that are perfect for any occasion.",
+    "shop_rating": 4.7,
+    "shop_banner": "https://picsum.photos/id/1015/800/300",
+    "shop_logo": "https://picsum.photos/id/1015/200/200"
+  }
+]

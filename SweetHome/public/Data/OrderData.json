@@ -1,0 +1,28 @@
+[
+  {
+    "shop_id": "shop123",
+    "shop_owner_id": "owner456",
+    "cake_id": "cake789",
+    "price": 25.99,
+    "status": {
+      "accepted": true,
+      "cooking": false,
+      "shipping": false,
+      "canceled": false
+    },
+    "cake_pic": "https://example.com/images/cake1.jpg"
+  },
+  {
+    "shop_id": "shop124",
+    "shop_owner_id": "owner457",
+    "cake_id": "cake790",
+    "price": 30.5,
+    "status": {
+      "accepted": false,
+      "cooking": true,
+      "shipping": false,
+      "canceled": false
+    },
+    "cake_pic": "https://example.com/images/cake2.jpg"
+  }
+]
