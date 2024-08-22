@@ -7,7 +7,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 
 const AddACakeForm = ({ fireOnSubmit }) => {
-  const user = useContext(UserContext);
+  const {user} = useContext(UserContext);
   const [previewImg, setPreviewImg] = useState(null);
   const [flavours, setFlavours] = useState([]);
   const [fruits, setFruits] = useState([]);

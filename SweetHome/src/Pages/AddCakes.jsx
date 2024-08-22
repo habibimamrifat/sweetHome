@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../PrivateRoute/PrivateRout'
 
 const AddCakes = () => {
-  const user = useContext(UserContext)
+  const { user} = useContext(UserContext)
   const navigate = useNavigate()
   const gatheredCakeData = async (cakeInfo)=>
   {

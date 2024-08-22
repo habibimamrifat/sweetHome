@@ -10,8 +10,9 @@ const Sidebar = ({ isSideBarOpen, isSideBarOpenFunction }) => {
 
   const mapRout = useRef();
   const navigate = useNavigate();
-  const loggedInUser = useContext(UserContext);
-  console.log(loggedInUser);
+
+  const {user} = useContext(UserContext);
+  console.log(user);
 
   const logOutFunction = () => {
     // console.log("i am being called")
@@ -38,7 +39,7 @@ const Sidebar = ({ isSideBarOpen, isSideBarOpenFunction }) => {
       },
       {
         routName: "All Orders",
-        routHttp: `/customerhome/allorders/${loggedInUser._id}`,
+        routHttp: `/customerhome/allorders/${user._id}`,
       },
     ];
     mapRout.current = customerRout;
@@ -46,15 +47,15 @@ const Sidebar = ({ isSideBarOpen, isSideBarOpenFunction }) => {
     const bakerRout = [
       {
         routName: "All Cakes",
-        routHttp: `/bakerhome/allCakes/${loggedInUser.shopId}`,
+        routHttp: `/bakerhome/allCakes/${user.shopId}`,
       },
       {
         routName: "Add New Cake",
-        routHttp: `/bakerhome/addCakes/${loggedInUser.shopId}`,
+        routHttp: `/bakerhome/addCakes/${user.shopId}`,
       },
       {
         routName: "All Orders",
-        routHttp: `/bakerhome/allorders/${loggedInUser.shopId}`,
+        routHttp: `/bakerhome/allorders/${user.shopId}`,
       },
     ];
     mapRout.current = bakerRout;

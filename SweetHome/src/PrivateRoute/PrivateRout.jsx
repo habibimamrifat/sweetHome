@@ -1,8 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
+
+
 export const UserContext = createContext();
 
 const PrivateRout = ({ placement, children }) => {
   const [user, setUser] = useState(null);
+  const [reload,setReload]=useState(true)
 
   useEffect(() => {
     const logedInUser = JSON.parse(localStorage.getItem("sweetHomeUser"));
@@ -15,8 +18,12 @@ const PrivateRout = ({ placement, children }) => {
     }
   }, []);
 
+  const ProviderValue= {
+    user,reload,setReload
+  }
+
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={ProviderValue}>
       {user ? (
         <>{children}</>
       ) : (

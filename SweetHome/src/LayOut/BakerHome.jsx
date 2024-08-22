@@ -5,8 +5,8 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../SharedComponents/Sidebar";
 
 const BakerHome = () => {
-  const user = useContext(UserContext);
-  console.log(user);
+  const {user} = useContext(UserContext);
+  // console.log(user);
   const [isSideBarOpen, isSideBarOpenFunction]=useState(false)
 
   return (

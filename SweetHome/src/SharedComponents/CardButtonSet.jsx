@@ -78,6 +78,46 @@ const BakerCakeCollectionPannelButtonSet = ({Data})=>{
 }
 
 
+const ViewSingleOrderButtonset =({setReload , order})=>{
+  return(
+    <div className='w-full h-20 mt-10 flex justify-center'>
+        <PiHandshakeThin
+      className={`h-[60%] w-1/5 text-xl rounded-xl text-white border-2    bg-gradient-to-tr
+              ${
+                order.status.accepted
+                  ? "from-successPrimary to-successSecondary"
+                  : " frohover:border-sky-500m-primary to-secondary"
+              }`}
+      onClick={() => UpdateOrder(setReload, order._id, "accepted")}
+    />
+    <PiCookingPotLight
+            className={`h-[60%] w-1/5 text-xl rounded-xl text-white border-2    bg-gradient-to-tr
+                        ${
+                          order.status.cooking
+                            ? "from-successPrimary to-successSecondary"
+                            : "hover:border-sky-500 from-primary to-secondary"
+                        }`}
+            onClick={() => UpdateOrder(setReload, order._id, "cooking")}
+          />
+
+          <LiaShippingFastSolid
+           className={`h-[60%] w-1/5 text-xl rounded-xl text-white border-2    bg-gradient-to-tr
+                        ${
+                          order.status.shipping
+                            ? "from-successPrimary to-successSecondary"
+                            : "hover:border-sky-500 from-primary to-secondary"
+                        }`}
+            onClick={() => UpdateOrder(setReload, order._id, "shipping")}
+          />
+
+          <RxCross1
+            className="bg-gradient-to-tr from-orange-700 to-orange-400 h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-red-400"
+            onClick={() => UpdateOrder(setReload, order._id, "canceled")}
+          />
+      </div>
+  )
+}
+
 const CustomerOrderPanelButtonSet = ({isCanceled})=>{
     return(
         <div className="w-full h-full flex justify-center items-center gap-2">
@@ -110,4 +150,6 @@ const ShopPannelButtonSet = ()=>{
 }
 
 
-export { BakerOrderPnelButtonSet,CustomerOrderPanelButtonSet,ShopPannelButtonSet,BakerCakeCollectionPannelButtonSet };
+
+
+export { BakerOrderPnelButtonSet,CustomerOrderPanelButtonSet,ShopPannelButtonSet,BakerCakeCollectionPannelButtonSet,ViewSingleOrderButtonset };

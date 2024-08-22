@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { UserContext } from '../PrivateRoute/PrivateRout'
 
 const CustomerHome = () => {
-    const user = useContext(UserContext)
+    const {user} = useContext(UserContext)
     console.log("i am ",user)
     return (
     <div>

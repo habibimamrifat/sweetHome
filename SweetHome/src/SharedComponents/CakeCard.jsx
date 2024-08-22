@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonCancel, ButtonWhite, ButtonWhiteLink } from "./ButtonAndText";
+import { ButtonCancel, ButtonWhiteLink } from "./ButtonAndText";
 import {
   BakerCakeCollectionPannelButtonSet,
   BakerOrderPnelButtonSet,
@@ -20,7 +20,7 @@ const CakeCard = ({ placement, Data, setReload }) => {
       } ${
         (placement === "bakerOrderPannel" ||
           placement === "customerOrderPannel") &&
-        "h-[450px]"
+        "h-[475px]"
       }`}
     >
       <div className="h-[70%] w-[90%] mt-2 rounded-md overflow-hidden flex justify-center mx-auto relative">

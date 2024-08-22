@@ -1,12 +1,14 @@
-import React, { useEffect, useState,} from 'react'
+import React, { useContext, useEffect, useState,} from 'react'
 import { useParams } from 'react-router-dom'
 import CakeCard from '../SharedComponents/CakeCard'
 import CustomLoader from '../SharedComponents/CustomLoader'
+import { UserContext } from '../PrivateRoute/PrivateRout'
 
 const AllOrders = () => {
     const {shopId}=useParams()
     const [data,setData] = useState(null)
-    const [reload,setReload]=useState(true)
+   
+    const {reload,setReload} = useContext(UserContext)
 
     useEffect(()=>{
         const fetchData = async ()=>{
@@ -23,6 +25,9 @@ const AllOrders = () => {
             console.log("something went wrong in data fetching for all order",error)
            }
         }
+
+      fetchData()
+      
        if(reload)
        {
         fetchData()
