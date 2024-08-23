@@ -3,59 +3,54 @@ import CustomLoader from "../SharedComponents/CustomLoader";
 import CakeCard from "../SharedComponents/CakeCard";
 import { useParams } from "react-router-dom";
 
-const Cakes = (  {placement="shopPannel"}) => {
+const Cakes = ({ placement = "shopPannel" }) => {
   const [AllCakes, setAllCakes] = useState([]);
-  const { shopIdParam } = useParams();
-  // console.log("the shopId is", shopId);
-  const shopId= useRef()
+  const [loading, setLoading] = useState(true); // Loading state
 
-  if(placement !== "shopPannel")
-  {
-   if(shopId)
-   {
-    shopId.current= shopIdParam;
-   }
-   else{
-    const loggedUser = JSON.parse(localStorage.getItem("sweetHomeUser"))
-    shopId.current=loggedUser.shopId
-   }
-  }
-  
-  const allCakeFetchUrl = useRef("http://localhost:5000")
+  const { shopId } = useParams();
+  console.log("the shopId is", shopId);
 
-  if(shopId.current)
-  {
-    allCakeFetchUrl.current = `http://localhost:5000/bakerAllCakeCollection/${shopId.current}` 
+  const shopIdRef = useRef();
+  const allCakeFetchUrl = useRef("http://localhost:5000");
+
+  if (placement === "bakerCakeCollectionPanel" && shopId) {
+    const loggedUser = JSON.parse(localStorage.getItem("sweetHomeUser"));
+    shopIdRef.current = loggedUser.shopId;
+    console.log("I am triggered");
+    allCakeFetchUrl.current = `http://localhost:5000/bakerAllCakeCollection/${shopIdRef.current}`;
   }
-  
+
   useEffect(() => {
-    const allCakeFatch = async () => {
+    const allCakeFetch = async () => {
       try {
-        const allCakes = await fetch(`${allCakeFetchUrl.current}`);
-        if (allCakes.ok) {
-          const cakes = await allCakes.json();
+        const response = await fetch(`${allCakeFetchUrl.current}`);
+        if (response.ok) {
+          const cakes = await response.json();
           setAllCakes(cakes);
         } else {
-          console.log("SARVER DOWN");
+          console.log("SERVER DOWN");
         }
-      } 
-      catch(error) {
-        console.log("datafetching Went wrong",error);
+      } catch (error) {
+        console.log("Data fetching went wrong", error);
+      } finally {
+        setLoading(false); // Set loading to false after data is fetched
       }
     };
-    allCakeFatch();
+    allCakeFetch();
   }, []);
 
   return (
-    <div className="bg-blue-50 h-full w-full overflow-scroll ">
-      {AllCakes && AllCakes.length > 0 ? (
+    <div className="bg-blue-50 h-full w-full overflow-scroll">
+      {loading ? (
+        <CustomLoader />
+      ) : AllCakes && AllCakes.length > 0 ? (
         <div className="flex justify-center flex-wrap mx-2 mt-2 gap-y-5 gap-x-5 pb-[200px]">
           {AllCakes.map((cake, index) => (
             <CakeCard placement={placement} Data={cake} key={index} />
           ))}
         </div>
       ) : (
-        <CustomLoader />
+        <h2>No cakes yet</h2>
       )}
     </div>
   );

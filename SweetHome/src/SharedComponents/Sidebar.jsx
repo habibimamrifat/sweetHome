@@ -1,12 +1,11 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { ButtonWhite, ButtonWhiteLink } from "./ButtonAndText";
 import { UserContext } from "../PrivateRoute/PrivateRout";
-import LogOutFunctuon from "../Utility/LogOutFunctuon";
 import { useNavigate } from "react-router-dom";
 
-const Sidebar = ({ isSideBarOpen, isSideBarOpenFunction }) => {
-  const placement = "baker";
+const Sidebar = ({placement, isSideBarOpen, isSideBarOpenFunction }) => {
+  // const placement = "baker";
 
   const mapRout = useRef();
   const navigate = useNavigate();
@@ -27,7 +26,8 @@ const Sidebar = ({ isSideBarOpen, isSideBarOpenFunction }) => {
     // LogOutFunctuon()
   };
 
-  if (placement === "customer") {
+useEffect(()=>{
+  if (user && placement === "customer") {
     const customerRout = [
       {
         routName: "All Cakes",
@@ -43,7 +43,7 @@ const Sidebar = ({ isSideBarOpen, isSideBarOpenFunction }) => {
       },
     ];
     mapRout.current = customerRout;
-  } else if (placement === "baker") {
+  } else if (user && placement === "baker") {
     const bakerRout = [
       {
         routName: "All Cakes",
@@ -60,6 +60,7 @@ const Sidebar = ({ isSideBarOpen, isSideBarOpenFunction }) => {
     ];
     mapRout.current = bakerRout;
   }
+},[])
 
   return (
     <div
@@ -78,7 +79,8 @@ const Sidebar = ({ isSideBarOpen, isSideBarOpenFunction }) => {
       </div>
 
       <div className="w-full flex flex-col items-center mt-20 gap-y-2">
-        {mapRout.current.map((eachRout, index) => (
+        {mapRout.current && 
+        mapRout.current.map((eachRout, index) => (
           <div className="w-[60%] h-12 " key={index}>
             <ButtonWhiteLink
               buttonInnerText={eachRout.routName}

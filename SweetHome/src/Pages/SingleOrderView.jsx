@@ -1,11 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { TextDarkest } from '../SharedComponents/ButtonAndText'
-import { BakerOrderPnelButtonSet, ViewSingleOrderButtonset } from '../SharedComponents/CardButtonSet'
-import { PiCookingPotLight, PiHandshakeThin } from 'react-icons/pi'
-import UpdateOrder from '../Utility/UpdateOrder'
-import { LiaShippingFastSolid } from 'react-icons/lia'
-import { RxCross1 } from 'react-icons/rx'
+import { ViewSingleOrderButtonset } from '../SharedComponents/CardButtonSet'
 import { UserContext } from '../PrivateRoute/PrivateRout'
 
 const SingleOrderView = () => {

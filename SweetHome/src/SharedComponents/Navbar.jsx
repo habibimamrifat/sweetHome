@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { IoPersonCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { GiCakeSlice } from "react-icons/gi";
 import { TextWhite } from "./ButtonAndText";
-import { SlOptions } from "react-icons/sl";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = ({
@@ -15,7 +14,6 @@ const Navbar = ({
   return (
     <div className="w-full h-20 bg-gradient-to-tr from-primary to-secondary flex justify-center items-center">
       <div className="w-full mx-[2%] flex justify-around items-center">
-
         {placement === "home" ? (
           <div className="relative group/signIn">
             <IoPersonCircle className="text-[25px] text-white " />
@@ -34,7 +32,7 @@ const Navbar = ({
               </Link>
             </div>
           </div>
-        ) : placement === "customerHome" || "bakerHome" ? (
+        ) : placement === "customerHome" || placement === "bakerHome" ? (
           <div className="text-white flex gap-5 items-center">
             <div>
               <GiHamburgerMenu
@@ -49,15 +47,12 @@ const Navbar = ({
 
         <div className="flex justify-around items-center w-[70%]">
           {placement === "home" ? (
-            <Link to="/signUpPage">
-              <div className="hover:scale-[1.1] px-2 hover:border-[1px] rounded-md border-white flex justify-center items-center">
-                <TextWhite text={"Signup"} />
-              </div>
-            </Link>
-          ) : null}
-
-          {placement !== "bakerHome" && (
             <>
+              <Link to="/signUpPage">
+                <div className="hover:scale-[1.1] px-2 hover:border-[1px] rounded-md border-white flex justify-center items-center">
+                  <TextWhite text={"Signup"} />
+                </div>
+              </Link>
               <Link to="/allCakes">
                 <div className="hover:scale-[1.1] px-2 hover:border-[1px] rounded-md border-white flex justify-center items-center">
                   <TextWhite text={"Cakes"} />
@@ -70,7 +65,7 @@ const Navbar = ({
                 </div>
               </Link>
             </>
-          )}
+          ) : null}
         </div>
 
         <Link to="/">
@@ -81,7 +76,6 @@ const Navbar = ({
             </h2>
           </div>
         </Link>
-        
       </div>
     </div>
   );

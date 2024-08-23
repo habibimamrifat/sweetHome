@@ -70,19 +70,29 @@ const router = createBrowserRouter([
         path: "/allShops",
         element: <Shops/>
       },
-      {
-        path: "/eachShop/:id",
-        element: <EachShopView/>,
-        loader:LoaderSingleShop
-      },
     ]
   },
+  
 
   {
     path:"/customerhome",
     element:<PrivateRout>
       <CustomerHome/>
-      </PrivateRout> 
+      </PrivateRout>,
+      children:[
+        {
+          index:true,
+          element:<Navigate to={"/customerhome/allCakes"}/>
+        },
+        {
+          path:"/customerhome/allCakes",
+          element:<Cakes/>
+        },
+        {
+          path:"/customerhome/allShops",
+          element:<Shops/>
+        }
+      ]
   },
 
   {
@@ -93,23 +103,19 @@ const router = createBrowserRouter([
       children:[
         // all sidebar navition for baker down
         {
-          index:true,
-          element:<Navigate to="/bakerhome/allCakes/:shopId" />
-        },
-        {
-          path:"/bakerhome/allCakes/:shopId",
+          path:"allCakes/:shopId",
           element:<Cakes
           placement={'bakerCakeCollectionPanel'}
           />
         },
 
         {
-          path:"/bakerhome/addCakes/:shopid",
+          path:"addCakes/:shopid",
           element:<AddCakes/>
         },
         
         {
-          path:"/bakerhome/allOrders/:shopId",
+          path:"allOrders/:shopId",
           element:<AllOrders/>
         },
 
@@ -118,11 +124,11 @@ const router = createBrowserRouter([
         
         // ......................
         {
-          path:"/bakerhome/updateCakeData/:cakeId",
+          path:"updateCakeData/:cakeId",
           element:<UpdateACake/>
         },
         {
-          path:"/bakerhome/baker/viewSingleOrder/:orderId",
+          path:"baker/viewSingleOrder/:orderId",
           element:<SingleOrderView/>
         },
       ]

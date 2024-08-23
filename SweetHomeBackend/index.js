@@ -201,6 +201,13 @@ async function run() {
     });
     // all cake collection for market place up
 
+    // all shop collection for market place down
+    app.get("/allShopCollection", async (req, res) => {
+      const result = await allShopCollection.find().toArray();
+      res.send(result);
+    });
+    // all shop collection for market place up
+
 
 
     //all customer related apis are here down............

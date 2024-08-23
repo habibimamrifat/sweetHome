@@ -58,7 +58,7 @@ const BakerSignIn = () => {
         <TextLight
         text={"Forgot Pasword ?"}
         />
-        <a href="">
+        <a href="/">
         <u>
         <TextDarkest
         text={"Reset Password"}/>
