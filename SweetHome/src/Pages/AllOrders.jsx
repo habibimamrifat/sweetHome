@@ -1,20 +1,36 @@
-import React, { useContext, useEffect, useState,} from 'react'
+import React, { useContext, useEffect, useRef, useState,} from 'react'
 import { useParams } from 'react-router-dom'
 import CakeCard from '../SharedComponents/CakeCard'
 import CustomLoader from '../SharedComponents/CustomLoader'
 import { UserContext } from '../PrivateRoute/PrivateRout'
 
-const AllOrders = () => {
-    const {shopId}=useParams()
+const AllOrders = ({placement}) => {
+    console.log("all orders",placement)
     const [data,setData] = useState(null)
    const [isLoading, setIsLoading]=useState(true)
     const {reload,setReload} = useContext(UserContext)
+    const httpLink = useRef()
+
+    const cusOrBekerId= useRef()
+
+    if(placement === "bakerOrderPannel")
+    {
+      const {shopId}=useParams()
+      cusOrBekerId.current=shopId
+        httpLink.current = "http://localhost:5000/bakerAllOrderCollection"
+    }
+    else if (placement === "customerOrderPannel")
+    {
+      const {customerId}=useParams()
+      cusOrBekerId.current=customerId
+      httpLink.current = "http://localhost:5000/customerAllOrderCollection"
+    }
 
     useEffect(()=>{
         const fetchData = async ()=>{
            try
            {
-            const request = await fetch(`http://localhost:5000/bakerAllOrderCollection/${shopId}`)
+            const request = await fetch(`${httpLink.current}/${cusOrBekerId.current}`)
 
            if(request.ok)
            {
@@ -57,7 +73,7 @@ const AllOrders = () => {
           data.map((eachOrder,index) => (
             <CakeCard
                 Data={eachOrder}
-                placement={"bakerOrderPannel"}
+                placement={placement}
                 key={index}
                 setReload={setReload}/>
           ))}

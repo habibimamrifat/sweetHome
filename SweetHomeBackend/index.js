@@ -241,6 +241,22 @@ async function run() {
         res.send({ message: "Internal server error", error });
     }
     })
+
+    //Gather All Order of the Customer
+    app.get("/customerAllOrderCollection/:customerId",async(req,res)=>{
+      const {customerId} = req.params
+      // console.log("i am the shio pi",customerId)
+
+      try{
+        const result = await allOrderCollection.find({customer_id:customerId}).toArray()
+      res.send(result)
+      }
+      catch(error)
+      {
+        console.log("error occared at cke fetching",error)
+        res.send({message:"server error cake collection fetching", error})
+      }
+    })
     //all customer related apis are here up..............
 
 

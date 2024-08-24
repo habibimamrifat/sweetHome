@@ -78,6 +78,10 @@ const UpdateOrder = async (setReload, orderId, triggaredState) => {
           alert("cant return to Accepted state when Order is being cooked or shiped")
         
       }
+      else if(triggaredState !== "canceled" && targetOrderState.canceled)
+        {
+        alert("cant change state the order got canceled")
+      }
       else{
         await updateOrderState(httpLink, updatingState, orderId);
       }

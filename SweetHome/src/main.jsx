@@ -85,12 +85,18 @@ const router = createBrowserRouter([
           element:<Navigate to={"/customerhome/allCakes"}/>
         },
         {
-          path:"/customerhome/allCakes",
+          path:"allCakes",
           element:<Cakes/>
         },
         {
-          path:"/customerhome/allShops",
+          path:"allShops",
           element:<Shops/>
+        },
+        {
+          path:"allOrders/:customerId",
+          element:<AllOrders
+          placement={"customerOrderPannel"}
+          />
         }
       ]
   },
@@ -116,7 +122,9 @@ const router = createBrowserRouter([
         
         {
           path:"allOrders/:shopId",
-          element:<AllOrders/>
+          element:<AllOrders
+          placement={"bakerOrderPannel"}
+          />
         },
 
         // all sidebar navition for baker up 

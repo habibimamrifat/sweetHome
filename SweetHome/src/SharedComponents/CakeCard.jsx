@@ -6,15 +6,19 @@ import {
   CustomerOrderPanelButtonSet,
   ShopPannelButtonSet,
 } from "./CardButtonSet";
+import UpdateOrder from "../Utility/UpdateOrder";
 
 const CakeCard = ({ placement, Data, setReload }) => {
   const isCanceled = Data?.status?.canceled || false;
+  console.log("cake card is canceled",isCanceled)
+  console.log("cake card placement",placement)
+
 
   return (
     <div
       className={`w-full sm:w-[45%] md:w-[30%] shadow-lg shadow-shadowColor rounded-lg overflow-hidden h-96 group ${
-        placement === "customerOrderPannel" ||
-        (placement === "bakerOrderPannel" && isCanceled)
+        (placement === "customerOrderPannel" && isCanceled)
+        || (placement === "bakerOrderPannel" && isCanceled)
           ? "bg-red-600"
           : "bg-gradient-to-tr from-primary to-secondary"
       } ${
@@ -43,7 +47,9 @@ const CakeCard = ({ placement, Data, setReload }) => {
             ),
 
             customerOrderPannel: (
-              <CustomerOrderPanelButtonSet isCanceled={isCanceled} />
+              <CustomerOrderPanelButtonSet Data={Data}
+              isCanceled={isCanceled}
+              setReload={setReload} />
             ),
 
             bakerOrderPannel: (
@@ -59,6 +65,7 @@ const CakeCard = ({ placement, Data, setReload }) => {
                Data={Data} 
                />
             ),
+
           }[placement] || null}
         </div>
       </div>
@@ -102,7 +109,7 @@ const CakeCard = ({ placement, Data, setReload }) => {
             placement === "customerOrderPannel" ? "block" : "hidden"
           } text-sm`}
         >
-          <div className="w-[80%] mx-auto h-10 pb-2">
+          <div className="w-[80%] mx-auto h-10 pb-2"onClick={() => UpdateOrder(setReload, Data._id, "canceled")}>
             <ButtonCancel buttonInnerText={"Cancel"} />
           </div>
         </div>

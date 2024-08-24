@@ -31,15 +31,15 @@ useEffect(()=>{
     const customerRout = [
       {
         routName: "All Cakes",
-        routHttp: "/customerhome/allCakes",
+        routHttp: "allCakes",
       },
       {
         routName: "All Shops",
-        routHttp: "/customerhome/allShops",
+        routHttp: "allShops",
       },
       {
         routName: "All Orders",
-        routHttp: `/customerhome/allorders/${user._id}`,
+        routHttp: `allorders/${user._id}`,
       },
     ];
     mapRout.current = customerRout;
