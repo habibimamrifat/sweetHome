@@ -3,14 +3,27 @@ import { UserContext } from "../PrivateRoute/PrivateRout";
 import Navbar from "../SharedComponents/Navbar";
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../SharedComponents/Sidebar";
+import { useRef } from "react";
 
 const BakerHome = () => {
   const {user} = useContext(UserContext);
   // console.log(user);
   const [isSideBarOpen, isSideBarOpenFunction]=useState(false)
   const navigate = useNavigate()
+
+  const count=useRef(0)
+
   useEffect(()=>{
-    navigate(`allCakes/${user.shopId}`)
+
+    const navigateTo =()=>{
+      if(count.current < 1)
+      {
+        navigate(`allCakes/${user.shopId}`)
+        count.current= count.current + 1
+      }
+    }
+    navigateTo()
+   
   },[])
  
 

@@ -7,7 +7,7 @@ import { UserContext } from '../PrivateRoute/PrivateRout'
 const AllOrders = () => {
     const {shopId}=useParams()
     const [data,setData] = useState(null)
-   
+   const [isLoading, setIsLoading]=useState(true)
     const {reload,setReload} = useContext(UserContext)
 
     useEffect(()=>{
@@ -16,13 +16,22 @@ const AllOrders = () => {
            {
             const request = await fetch(`http://localhost:5000/bakerAllOrderCollection/${shopId}`)
 
+           if(request.ok)
+           {
             const responce = await request.json()
-           setData(responce)
-            
+            setData(responce)
+           }
+            else{
+              alert("something went wrong during Fetchhing Data")
+            }
            }
            catch(error)
            {
             console.log("something went wrong in data fetching for all order",error)
+           }
+           finally
+           {
+            setIsLoading(false)
            }
         }
 
@@ -39,7 +48,10 @@ const AllOrders = () => {
   return (
 
     <div className="bg-blue-50 h-full w-full overflow-scroll ">
-      {data ? (
+      {isLoading ?
+      <CustomLoader />
+      :
+      data && data.length >0 ? (
         <div className="flex justify-center flex-wrap mx-2 mt-2 gap-y-5 gap-x-5 pb-[200px]">
           {
           data.map((eachOrder,index) => (
@@ -51,8 +63,8 @@ const AllOrders = () => {
           ))}
         </div>
       ) : (
-        <CustomLoader />
-       
+        
+       <h2>No orders yet</h2>
       )}
     </div>
   )

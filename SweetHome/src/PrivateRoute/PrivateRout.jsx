@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 
 export const UserContext = createContext();
 
@@ -17,11 +17,11 @@ const PrivateRout = ({ placement, children }) => {
     }
   }, []);
 
-  const ProviderValue = {
+  const ProviderValue = useMemo(() => ({
     user,
     reload,
     setReload,
-  };
+  }), [user, reload]);;
 
   return (
     <UserContext.Provider value={ProviderValue}>
