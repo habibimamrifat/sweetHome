@@ -24,6 +24,7 @@ import UpdateACake from './Pages/UpdateACake.jsx';
 import AllOrders from './Pages/AllOrders.jsx';
 import AddCakes from './Pages/AddCakes.jsx';
 import SingleOrderView from './Pages/SingleOrderView.jsx';
+import PlaceAnOrder from './Pages/PlaceAnOrder.jsx';
 
 const router = createBrowserRouter([
 
@@ -70,6 +71,11 @@ const router = createBrowserRouter([
         path: "/allShops",
         element: <Shops/>
       },
+      {
+        path: "/allCakes/placeAnOrder/:cakeId",
+        element: <PlaceAnOrder/>
+      },
+     
     ]
   },
   
@@ -97,7 +103,11 @@ const router = createBrowserRouter([
           element:<AllOrders
           placement={"customerOrderPannel"}
           />
-        }
+        },
+        {
+          path: "/customerhome/allCakes/placeAnOrder/:cakeId",
+          element: <PlaceAnOrder/>
+        },
       ]
   },
 

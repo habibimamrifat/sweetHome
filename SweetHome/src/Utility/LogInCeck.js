@@ -9,7 +9,7 @@ const LogInCeck = async (apiLink, logInInfo) => {
   try {
     const request = await fetch(`${apiLink}/${email}/${password}`);
     const result = await request.json();
-    console.log("log in check",result)
+    // console.log("log in check",result)
     return result
   } 
   catch (error) {

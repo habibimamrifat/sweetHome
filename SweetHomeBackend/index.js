@@ -201,6 +201,28 @@ async function run() {
     });
     // all cake collection for market place up
 
+    // find a single cake
+    app.get("/findASingleCake/:cakeId",async(req,res)=>{
+      const {cakeId}= req.params
+      // console.log("server",cakeId)
+      try{
+        const result= await allCakeCollection.findOne({_id: new ObjectId(cakeId)})
+        if(result)
+        {
+          res.send(result)
+        }
+        else
+        {
+          res.send({message:"fetch Worked but no result"})
+        }
+      }
+      catch(error)
+      {
+        res.send({message:"fetch didnt worked"},error)
+      }
+    })
+    // find a single cake
+
     // all shop collection for market place down
     app.get("/allShopCollection", async (req, res) => {
       const result = await allShopCollection.find().toArray();
@@ -211,6 +233,7 @@ async function run() {
 
 
     //all customer related apis are here down............
+
     // create a customer 
     app.post("/signUpPage/customerSignUp", async(req,res)=>{
       const customer=req.body
@@ -257,6 +280,7 @@ async function run() {
         res.send({message:"server error cake collection fetching", error})
       }
     })
+    
     //all customer related apis are here up..............
 
 

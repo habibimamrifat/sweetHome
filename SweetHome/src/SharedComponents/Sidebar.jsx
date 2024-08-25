@@ -11,7 +11,7 @@ const Sidebar = ({placement, isSideBarOpen, isSideBarOpenFunction }) => {
   const navigate = useNavigate();
 
   const {user} = useContext(UserContext);
-  console.log(user);
+  // console.log(user);
 
   const logOutFunction = () => {
     // console.log("i am being called")

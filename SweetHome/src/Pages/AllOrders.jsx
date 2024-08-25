@@ -5,23 +5,24 @@ import CustomLoader from '../SharedComponents/CustomLoader'
 import { UserContext } from '../PrivateRoute/PrivateRout'
 
 const AllOrders = ({placement}) => {
-    console.log("all orders",placement)
+    // console.log("all orders",placement)
     const [data,setData] = useState(null)
    const [isLoading, setIsLoading]=useState(true)
     const {reload,setReload} = useContext(UserContext)
     const httpLink = useRef()
-
+    const {shopId}=useParams()
+    const {customerId}=useParams()
     const cusOrBekerId= useRef()
 
     if(placement === "bakerOrderPannel")
     {
-      const {shopId}=useParams()
+      
       cusOrBekerId.current=shopId
         httpLink.current = "http://localhost:5000/bakerAllOrderCollection"
     }
     else if (placement === "customerOrderPannel")
     {
-      const {customerId}=useParams()
+      
       cusOrBekerId.current=customerId
       httpLink.current = "http://localhost:5000/customerAllOrderCollection"
     }

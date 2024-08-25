@@ -10,8 +10,8 @@ import UpdateOrder from "../Utility/UpdateOrder";
 
 const CakeCard = ({ placement, Data, setReload }) => {
   const isCanceled = Data?.status?.canceled || false;
-  console.log("cake card is canceled",isCanceled)
-  console.log("cake card placement",placement)
+  // console.log("cake card is canceled",isCanceled)
+  // console.log("cake card placement",placement)
 
 
   return (
@@ -43,7 +43,8 @@ const CakeCard = ({ placement, Data, setReload }) => {
           {{
 
             shopPannel: (
-            <ShopPannelButtonSet />
+            <ShopPannelButtonSet
+            Data={Data} />
             ),
 
             customerOrderPannel: (

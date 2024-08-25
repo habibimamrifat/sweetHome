@@ -3,7 +3,7 @@ import { LiaShippingFastSolid } from "react-icons/lia";
 import { PiCookingPotLight, PiHandshakeThin } from "react-icons/pi";
 import { RxCross1 } from "react-icons/rx";
 import UpdateOrder from "../Utility/UpdateOrder";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   CiEdit,
   CiHeart,
@@ -164,12 +164,15 @@ const CustomerOrderPanelButtonSet = ({ setReload, isCanceled, Data }) => {
   );
 };
 
-const ShopPannelButtonSet = () => {
+const ShopPannelButtonSet = ({Data}) => {
+  const location = useLocation()
   return (
     <div className="w-full h-full flex justify-center items-center gap-2">
       <CiZoomIn className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-0 duration-1000" />
 
-      <CiShoppingCart className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000" />
+      <Link to={`${location.pathname}/placeAnOrder/${Data._id}`} className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000">
+      <CiShoppingCart className="w-full h-full"/>
+      </Link>
 
       <CiHeart className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-150 duration-1000" />
 
