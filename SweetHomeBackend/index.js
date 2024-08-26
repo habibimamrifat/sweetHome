@@ -265,6 +265,30 @@ async function run() {
     }
     })
 
+    // find a songlr customer
+    app.get("/findSingleCustomer/:customerId", async (req,res)=>{
+      const {customerId}= req.params;
+      try {
+        const result = await allCustomerCollection.findOne({
+           _id: new ObjectId(customerId)
+        });
+        
+        console.log(result);
+
+        if (result) {
+           res.send(result)
+        } else {
+            // Log and respond if no user is found
+            console.log("User not found");
+            res.send({ message: "User not found" });
+        }
+    } catch (error) {
+        console.error("Error occurred:", error);
+        res.send({ message: "Internal server error", error });
+    }
+    })
+
+
     //Gather All Order of the Customer
     app.get("/customerAllOrderCollection/:customerId",async(req,res)=>{
       const {customerId} = req.params
@@ -280,8 +304,8 @@ async function run() {
         res.send({message:"server error cake collection fetching", error})
       }
     })
-    
-    //all customer related apis are here up..............
+
+    //all customer related apis are here up.............
 
 
     // all baker related apis are here down............
