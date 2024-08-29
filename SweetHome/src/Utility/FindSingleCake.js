@@ -1,7 +1,7 @@
 
 
 const FindSingleCake = async (cakeId) => { 
-    console.log("fromUtility",cakeId)
+    // console.log("fromUtility",cakeId)
   try{
     const request = await fetch (`http://localhost:5000/findASingleCake/${cakeId}`)
   if(request.ok)
