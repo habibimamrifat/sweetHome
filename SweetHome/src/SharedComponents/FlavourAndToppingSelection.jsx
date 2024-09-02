@@ -24,7 +24,7 @@ const FlavourAndToppingSelection = ({ cakeFlavourList, cakeToppingList,flavour, 
       <div className="flex gap-2 mt-5">
         <h2 className="text-xl">Select Flavour :</h2>
 
-        <select onChange={handleFlavourSelection}>
+        <select onChange={handleFlavourSelection} className="h-10 resize-none w-64 p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor">
           {cakeFlavourList.map((eachFlavour, index) => (
             <option key={index} value={eachFlavour}>
               {eachFlavour}
@@ -44,7 +44,7 @@ const FlavourAndToppingSelection = ({ cakeFlavourList, cakeToppingList,flavour, 
               onClick={() => handleToppingToggle(eachTopping)}
               className="p-2 cursor-pointer"
             >
-              <h2 className="flex gap-2 items-center">
+              <h2 className="flex gap-2 items-center h-10 resize-none w-36 p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor bg-white">
                 {topping.includes(eachTopping) ? <TiTick /> : <RxCross2 />}
                 {eachTopping}
               </h2>
@@ -57,10 +57,12 @@ const FlavourAndToppingSelection = ({ cakeFlavourList, cakeToppingList,flavour, 
         <div className="flex gap-2 flex-wrap">
           {topping.length > 0 ? (
             topping.map((eachTopping, index) => (
-              <h2 key={index}>{eachTopping}</h2>
+              <h2 key={index} className="flex gap-2 items-center h-10 resize-none w-36 p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor">{eachTopping}</h2>
             ))
           ) : (
-            <h2>( ! No topping will be added )</h2>
+            <h2 className="flex gap-2 items-center h-10 resize-none w-64 p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor bg-white">
+              ( ! No topping will be added )
+            </h2>
           )}
         </div>
       </div>

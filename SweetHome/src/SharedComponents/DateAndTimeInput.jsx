@@ -26,7 +26,7 @@ const DateAndTimeInput = ({ delayTime ,selectedDate, setSelectedDate,deliveryTim
         selected={selectedDate}
         onChange={(date) => setSelectedDate(date)}
         minDate={minDate}
-        className="ps-3 w-full"
+       className="h-10 resize-none w-64 p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor"
         required
       />
       <div>
@@ -35,7 +35,7 @@ const DateAndTimeInput = ({ delayTime ,selectedDate, setSelectedDate,deliveryTim
           type="time"
           onChange={(e) => setDeliveryTime(e.target.value)}
           style={{ border: "solid 1px pink" }}
-           className="ps-3 w-full"
+          className="h-10 resize-none w-64 p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor"
            required
         />
       </div>

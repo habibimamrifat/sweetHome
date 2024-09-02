@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DateAndTimeInput from "./DateAndTimeInput";
 import FlavourAndToppingSelection from "./FlavourAndToppingSelection";
 import CustomerInformationForOrder from "./CustomerInformationForOrder";
+import { ButtonWhiteSubmit } from "./ButtonAndText";
 
 const Orderform = ({ cakeData, customerData, setOrderFromData }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -20,7 +21,7 @@ const Orderform = ({ cakeData, customerData, setOrderFromData }) => {
             type="number"
             name="minmum_weight"
             min={cakeData.minmum_weight}
-            className="ps-3 w-full"
+           className="h-10 resize-none w-64 p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor"
             required
           />
           <h2 className="text-xl">Pound</h2>
@@ -51,8 +52,8 @@ const Orderform = ({ cakeData, customerData, setOrderFromData }) => {
 
         {/* special raquarment */}
         <div className="flex mt-5 gap-2 items-center">
-          <h2 className="text-xl">Special RequarMent:</h2>
-          <textarea name="Special_Requarment" className="w-full" />
+          <h2 className="text-base">Special RequarMent:</h2>
+          <textarea name="Special_Requarment" className="p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor bg-whitev w-[100%] lg:w-[50%]" />
         </div>
       </div>
 
@@ -61,6 +62,13 @@ const Orderform = ({ cakeData, customerData, setOrderFromData }) => {
         <CustomerInformationForOrder
         customerData={customerData}
         />
+      </div>
+
+      {/* submit button  */}
+      <div className="mt-5 w-96 h-10 mx-auto">
+      <ButtonWhiteSubmit
+      buttonInnerText={"Place Order"}
+      />
       </div>
     </form>
   );

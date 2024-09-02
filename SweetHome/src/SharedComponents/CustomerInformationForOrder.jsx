@@ -41,7 +41,7 @@ const CustomerInformationForOrder = ({ customerData }) => {
             onChange={(e) => setAddress(e.target.value)}
           />
           {viewAddressSuggestion && (
-            <div className="absolute inset-0 bg-white p-2 border border-gray-300 rounded-md shadow-lg overflow-hidden">
+            <div className="absolute inset-0 bg-white p-2 border border-gray-300 rounded-md shadow-md shadow-shadowColor overflow-hidden">
               <div className="flex gap-2 absolute top-2 right-2">
                 {/* Accept and Cancel Buttons */}
                 <button onClick={() => handleAddressSetup("accept")} className="text-green-500">
@@ -69,7 +69,7 @@ const CustomerInformationForOrder = ({ customerData }) => {
             onChange={(e) => setMobile(e.target.value)}
           />
           {viewMobileSuggestion && (
-            <div className="absolute inset-0 bg-white p-2 border border-gray-300 rounded-md shadow-lg overflow-hidden">
+            <div className="absolute inset-0 bg-white p-2 border border-gray-300 rounded-md shadow-md shadow-shadowColor overflow-hidden">
               <div className="flex gap-2 absolute top-2 right-2">
                 {/* Accept and Cancel Buttons */}
                 <button onClick={() => handleMobileSetup("accept")} className="text-green-500">
