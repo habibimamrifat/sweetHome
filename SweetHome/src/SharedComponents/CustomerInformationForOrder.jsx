@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 
-const CustomerInformationForOrder = ({ customerData }) => {
-  const [address, setAddress] = useState("");
-  const [mobile, setMobile] = useState("");
+const CustomerInformationForOrder = ({ customerData,address, setAddress,mobile, setMobile }) => {
 
   const [viewAddressSuggestion, setViewAddressSuggestion] = useState(true);
   const [viewMobileSuggestion, setViewMobileSuggestion] = useState(true);
 
-  useEffect(() => {
-    console.log(address);
-  }, [address]);
+  // useEffect(() => {
+  //   console.log(address);
+  // }, [address]);
 
   const handleAddressSetup = (action) => {
     if (action === "accept") {
@@ -36,7 +34,7 @@ const CustomerInformationForOrder = ({ customerData }) => {
           <textarea
             type="text"
             name="address"
-            className="h-10 resize-none w-64 p-2 border border-gray-300 rounded-md"
+            className="h-10 resize-none w-full sm:w-64 p-2 border border-gray-300 rounded-md"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
@@ -64,7 +62,7 @@ const CustomerInformationForOrder = ({ customerData }) => {
           <textarea
             type="text"
             name="mobile"
-            className="h-10 resize-none w-64 p-2 border border-gray-300 rounded-md"
+            className="h-10 resize-none w-full sm:w-64 p-2 border border-gray-300 rounded-md"
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
           />
