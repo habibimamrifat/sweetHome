@@ -295,7 +295,7 @@ async function run() {
       // console.log("placed order",orderData)
       try
       {
-        const placedOrder= allOrderCollection.insertOne(orderData)
+        const placedOrder=await allOrderCollection.insertOne(orderData)
         res.send(placedOrder)
       }
       catch(error)

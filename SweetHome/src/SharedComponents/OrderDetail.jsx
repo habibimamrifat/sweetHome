@@ -1,27 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { ButtonWhite } from "./ButtonAndText";
 import PlaceAnOrder from "../Utility/PlaceAnOrder";
-
+import CustomLoader from "../SharedComponents/CustomLoader"
+import { useNavigate } from "react-router-dom";
 
 const OrderDetail = ({ ordarDetail }) => {
-  console.log("thre data is ", ordarDetail);
+  const [isLoading, setIsLoading] = useState(false); // State for loading
+  // console.log("thre data is ", ordarDetail);
+  const navigate = useNavigate()
 
   const [hours, minutes] = ordarDetail.delivery_Time.split(":").map(Number);
 
-  // Create a new Date object and set the hours and minutes
   const deliveryTime = new Date();
   deliveryTime.setHours(hours, minutes);
 
-  // Format the time in 12-hour format with AM/PM
   const formattedDeliveryTime = deliveryTime.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
   });
 
+  const handleOrderSubmission = async (ordarDetail) => {
+    setIsLoading(true); // Start loader
+    try {
+     const placeAOrder = await PlaceAnOrder(ordarDetail);
+     if(placeAOrder.insertedId)
+     {
+      alert("your order successfully placed")
+      navigate(`/customerhome/allOrders/${ordarDetail.customer_id}`)
+     }
+     else{
+      alert("something went wrong placing your order")
+     }
+    } catch (error) {
+      console.error("Failed to place order:", error.message);
+    } finally {
+      setIsLoading(false); // Stop loader
+    }
+  };
+
   return (
     <div>
       <div className="w-full h-auto border-[1px] border-shadowColor">
+        {/* Order Details */}
         <div className="mx-3 mt-5">
           <p>Cake name : {ordarDetail.cake_Name}</p>
           <p>Cake Id : {ordarDetail.cake_id}</p>
@@ -29,12 +50,10 @@ const OrderDetail = ({ ordarDetail }) => {
 
         <div className="mx-3 mt-5">
           <p>Order date : {ordarDetail.order_date.toLocaleDateString()}</p>
-          <p>
-            Delivary date : {ordarDetail.delivery_date.toLocaleDateString()}
-          </p>
+          <p>Delivary date : {ordarDetail.delivery_date.toLocaleDateString()}</p>
           <p>Delivary time : {formattedDeliveryTime}</p>
           <p>Delivary address : {ordarDetail.delivery_address}</p>
-          <p>Delivary address : {ordarDetail.customer_phoneNumber}</p>
+          <p>Customer phone number : {ordarDetail.customer_phoneNumber}</p>
         </div>
 
         <div className="mx-3 mt-5">
@@ -55,7 +74,7 @@ const OrderDetail = ({ ordarDetail }) => {
               </div>
             </div>
 
-            <p>Special Requarment : {ordarDetail.Special_Requarment}</p>
+            <p>Special Requirement : {ordarDetail.Special_Requarment}</p>
           </div>
 
           <div className="mt-5 flex justify-around flex-wrap">
@@ -85,9 +104,13 @@ const OrderDetail = ({ ordarDetail }) => {
         </div>
       </div>
 
-      <div className="mt-10" onClick={()=>PlaceAnOrder(ordarDetail)}>
-        <ButtonWhite
-        buttonInnerText={"Confirm Order"}/>
+      <div className="mt-10" onClick={() => handleOrderSubmission(ordarDetail)}>
+        {isLoading ? (
+          <CustomLoader/>
+          // Display loader while processing
+        ) : (
+          <ButtonWhite buttonInnerText={"Confirm Order"} />
+        )}
       </div>
     </div>
   );

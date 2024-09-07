@@ -13,9 +13,9 @@ const Orderform = ({ cakeData, customerData, setOrderFromData }) => {
     cake_Name: cakeData.cake_Name,
     price: cakeData.price,
     status: {
-      accepted: true,
-      cooking: true,
-      shipping: true,
+      accepted: false,
+      cooking: false,
+      shipping: false,
       canceled: false,
     },
     cake_pic: cakeData.cake_pic,

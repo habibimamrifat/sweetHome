@@ -13,7 +13,8 @@ const PlaceAnOrder = async (orderData) => {
     );
     if (request.ok) {
       const result = await request.json();
-      console.log(result);
+      // console.log(result);
+      return (result)
     }
     else
     {
