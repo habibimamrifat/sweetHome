@@ -37,6 +37,7 @@ const CustomerInformationForOrder = ({ customerData,address, setAddress,mobile, 
             className="h-10 resize-none w-full sm:w-64 p-2 border border-gray-300 rounded-md"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
+            required
           />
           {viewAddressSuggestion && (
             <div className="absolute inset-0 bg-white p-2 border border-gray-300 rounded-md shadow-md shadow-shadowColor overflow-hidden">
@@ -65,6 +66,7 @@ const CustomerInformationForOrder = ({ customerData,address, setAddress,mobile, 
             className="h-10 resize-none w-full sm:w-64 p-2 border border-gray-300 rounded-md"
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
+            required
           />
           {viewMobileSuggestion && (
             <div className="absolute inset-0 bg-white p-2 border border-gray-300 rounded-md shadow-md shadow-shadowColor overflow-hidden">

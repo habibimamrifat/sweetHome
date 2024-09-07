@@ -119,7 +119,7 @@ const PlaceAnOrder = () => {
 
             {/* order form */}
             <div className="mx-5 mt-10">
-              <h2 className="text-3xl font-bold mb-5">Order Form</h2>
+              
               <Orderform
               cakeData={singleCakeData}
               customerData={singleUserData}

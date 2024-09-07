@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DateAndTimeInput from "./DateAndTimeInput";
 import FlavourAndToppingSelection from "./FlavourAndToppingSelection";
 import CustomerInformationForOrder from "./CustomerInformationForOrder";
@@ -23,17 +23,26 @@ const Orderform = ({ cakeData, customerData, setOrderFromData }) => {
     order_date: new Date(),
   });
 
-  const minDate = new Date();
-  const delivaryDuration = useRef(null);
+  const [minDate, setMinDate] = useState(new Date());
+  const deliveryDuration = useRef(null);
 
-  if (typeof cakeData.deliveryWithin != "number") {
-    // console.log("not a number")
-    delivaryDuration.current = Number(cakeData.deliveryWithin);
-    // console.log(typeof delivaryDuration.current);
-    minDate.setDate(minDate.getDate() + delivaryDuration.current);
-  } else {
-    minDate.setDate(minDate.getDate() + cakeData.deliveryWithin);
-  }
+  useEffect(() => {
+    let duration;
+
+    if (typeof cakeData.deliveryWithin !== "number") {
+      // Convert to number if not already
+      duration = Number(cakeData.deliveryWithin);
+    } else {
+      duration = cakeData.deliveryWithin;
+    }
+
+    deliveryDuration.current = duration;
+
+    // Update the minDate state
+    const updatedDate = new Date();
+    updatedDate.setDate(updatedDate.getDate() + duration);
+    setMinDate(updatedDate);
+  }, [cakeData]);
 
   const [selectedDate, setSelectedDate] = useState(minDate);
   const [deliveryTime, setDeliveryTime] = useState(
@@ -50,7 +59,7 @@ const Orderform = ({ cakeData, customerData, setOrderFromData }) => {
   const [minimumWeight, setMinimumWeight] = useState(cakeData.minmum_weight);
   const [specialRequirement, setSpecialRequirement] = useState("");
 
-  const [viewOrderDetail,setViewOrderDetail]=useState(false)
+  const [viewOrderDetail, setViewOrderDetail] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -68,96 +77,100 @@ const Orderform = ({ cakeData, customerData, setOrderFromData }) => {
       ...orderDetailsRef.current,
       requared_weight: minimumWeight,
       Special_Requarment: specialRequirement,
-      delivery_date: selectedDate,
+      delivery_date: minDate,
       delivery_Time: deliveryTime,
       customer_phoneNumber: mobile,
       delivery_address: address,
       requared_cake_topping: topping,
       requared_flavour: flavour,
+      minmum_weight:cakeData.minmum_weight
     };
-    console.log("i am being clicked",  orderDetailsRef.current);
-    setViewOrderDetail(true)
+    // console.log("i am being clicked", orderDetailsRef.current);
+    setViewOrderDetail(true);
   };
 
   return (
     <div>
-      <form onSubmit={onSubmitGatheredOrderData}>
-      <div className="border-[1px] border-shadowColor p-5">
-        {/* Required weight */}
-        <div className="flex gap-2">
-          <h2 className="text-xl">Required Weight :</h2>
-          <input
-            type="number"
-            name="minimum_weight"
-            min={cakeData.minmum_weight}
-            className="h-10 resize-none w-full sm:w-64 p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor"
-            required
-            placeholder={cakeData.minmum_weight}
-            onChange={handleInputChange}
-            value={minimumWeight}
-          />
-          <h2 className="text-xl">Pound</h2>
-        </div>
+      {! viewOrderDetail && (
+        <form onSubmit={onSubmitGatheredOrderData}>
+          <h2 className="text-3xl font-bold mb-5">Order Form</h2>
+          <div className="border-[1px] border-shadowColor p-5">
+            {/* Required weight */}
+            <div className="flex gap-2">
+              <h2 className="text-xl">Required Weight :</h2>
+              <input
+                type="number"
+                name="minimum_weight"
+                min={cakeData.minmum_weight}
+                className="h-10 resize-none w-full sm:w-64 p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor"
+                required
+                placeholder={cakeData.minmum_weight}
+                onChange={handleInputChange}
+                value={minimumWeight}
+              />
+              <h2 className="text-xl">Pound</h2>
+            </div>
 
-        {/* order Date and time setup */}
-        <div className="flex gap-2 mt-5">
-          <h2 className="text-xl">Delivery Last Date :</h2>
-          <DateAndTimeInput
-            delayTime={cakeData.deliveryWithin}
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-            setDeliveryTime={setDeliveryTime}
-            minDate={minDate}
-          />
-        </div>
+            {/* order Date and time setup */}
+            <div className="flex gap-2 mt-5">
+              <h2 className="text-xl">Delivery Last Date :</h2>
+              <DateAndTimeInput
+                delayTime={cakeData.deliveryWithin}
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+                setDeliveryTime={setDeliveryTime}
+                setMinDate={setMinDate}
+                minDate={minDate}
+              />
+            </div>
 
-        {/* Flavour and topping setup */}
-        <div>
-          <FlavourAndToppingSelection
-            cakeFlavourList={cakeData.cake_flavour}
-            cakeToppingList={cakeData.cake_topping_frouit}
-            flavour={flavour}
-            setFlavour={setFlavour}
-            topping={topping}
-            setTopping={setTopping}
-          />
-        </div>
+            {/* Flavour and topping setup */}
+            <div>
+              <FlavourAndToppingSelection
+                cakeFlavourList={cakeData.cake_flavour}
+                cakeToppingList={cakeData.cake_topping_frouit}
+                flavour={flavour}
+                setFlavour={setFlavour}
+                topping={topping}
+                setTopping={setTopping}
+              />
+            </div>
 
-        {/* Special requirements */}
-        <div className="flex mt-5 gap-2 items-center">
-          <h2 className="text-base">Special Requirement:</h2>
-          <textarea
-            name="Special_Requarment"
-            className="p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor bg-whitev w-[100%] lg:w-[50%]"
-            onChange={handleInputChange}
-            value={specialRequirement}
-          />
-        </div>
-      </div>
+            {/* Special requirements */}
+            <div className="flex mt-5 gap-2 items-center">
+              <h2 className="text-base">Special Requirement:</h2>
+              <textarea
+                name="Special_Requarment"
+                className="p-2 border border-gray-300 rounded-md shadow-sm shadow-shadowColor bg-whitev w-[100%] lg:w-[50%]"
+                onChange={handleInputChange}
+                value={specialRequirement}
+              />
+            </div>
+          </div>
 
-      {/* Customer data */}
-      <h2 className="text-3xl font-bold mt-5">Customer Data</h2>
-      <div className="border-[1px] border-shadowColor p-5 mt-2">
-        <CustomerInformationForOrder
-          customerData={customerData}
-          address={address}
-          setAddress={setAddress}
-          mobile={mobile}
-          setMobile={setMobile}
-        />
-      </div>
+          {/* Customer data */}
+          <h2 className="text-3xl font-bold mt-5">Customer Data</h2>
+          <div className="border-[1px] border-shadowColor p-5 mt-2">
+            <CustomerInformationForOrder
+              customerData={customerData}
+              address={address}
+              setAddress={setAddress}
+              mobile={mobile}
+              setMobile={setMobile}
+            />
+          </div>
 
-      {/* Submit button */}
-      <div className="mt-5 w-full sm:w-64 h-10 mx-auto">
-        <ButtonWhiteSubmit buttonInnerText={"Place Order"} />
-      </div>
-    </form>
+          {/* Submit button */}
+          <div className="mt-5 w-full sm:w-64 h-10 mx-auto">
+            <ButtonWhiteSubmit buttonInnerText={"Place Order"} />
+          </div>
+        </form>
+      )}
 
-    {
-      viewOrderDetail && <OrderDetail
-      ordarDetail={ orderDetailsRef.current}
-      />
-    }
+
+      {viewOrderDetail &&
+       <OrderDetail ordarDetail={orderDetailsRef.current}
+     />}
     </div>
   );
 };
