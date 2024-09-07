@@ -168,9 +168,11 @@ const Orderform = ({ cakeData, customerData, setOrderFromData }) => {
       )}
 
 
-      {viewOrderDetail &&
+      {
+      viewOrderDetail &&
        <OrderDetail ordarDetail={orderDetailsRef.current}
-     />}
+     />
+     }
     </div>
   );
 };

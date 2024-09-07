@@ -289,6 +289,21 @@ async function run() {
     })
 
 
+    //place an order
+    app.post("/customer/createAnOrder", async(req,res)=>{
+      const orderData = req.body
+      // console.log("placed order",orderData)
+      try
+      {
+        const placedOrder= allOrderCollection.insertOne(orderData)
+        res.send(placedOrder)
+      }
+      catch(error)
+      {
+        res.send({message:"sarver Data insertion Failed",error})
+      }
+    })
+
     //Gather All Order of the Customer
     app.get("/customerAllOrderCollection/:customerId",async(req,res)=>{
       const {customerId} = req.params
