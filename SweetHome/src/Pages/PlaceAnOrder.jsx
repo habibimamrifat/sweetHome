@@ -74,6 +74,8 @@ const PlaceAnOrder = () => {
         console.log("No matching path");
       }
     };
+
+    
     fetchDataForTheForm();
   }, []);
 

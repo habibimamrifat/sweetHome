@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { TextWhite } from "./ButtonAndText";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
 const ShopCard = ({ Data }) => {
+  const location = useLocation()
+  console.log(location)
   return (
     <div
       className={`w-full sm:w-[45%] md:w-[30%] shadow-lg rounded-lg overflow-hidden h-96 group bg-gradient-to-tr from-primary to-secondary shadow-shadowColor relative`}
@@ -34,7 +36,7 @@ const ShopCard = ({ Data }) => {
         )}
 
         <div className="absolute bottom-3 w-full flex justify-center">
-          <Link to={`/eachShop/${Data._id}`} className="w-full">
+          <Link to={`${location.pathname}/eachShop/${Data._id}`} className="w-full">
             <div className="w-[80%] h-10  bg-gradient-to-tr from-primary to-secondary shadow-md hover:shadow-shadowColor mx-auto rounded-full ">
               <div className="flex justify-center items-center text-[20px] font-bold gap-2 w-full h-full hover:scale-[1.1] duration-150">
                 <TextWhite text={"Visit"} />

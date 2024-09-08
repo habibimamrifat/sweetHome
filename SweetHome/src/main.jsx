@@ -25,6 +25,7 @@ import AllOrders from './Pages/AllOrders.jsx';
 import AddCakes from './Pages/AddCakes.jsx';
 import SingleOrderView from './Pages/SingleOrderView.jsx';
 import PlaceAnOrder from './Pages/PlaceAnOrder.jsx';
+import SingleCakeView from './Pages/SingleCakeView.jsx';
 
 const router = createBrowserRouter([
 
@@ -75,6 +76,14 @@ const router = createBrowserRouter([
         path: "/allCakes/placeAnOrder/:cakeId",
         element: <PlaceAnOrder/>
       },
+      {
+        path: "/allCakes/viewSingleCake/:cakeId",
+        element: <SingleCakeView/>
+      },
+      {
+        path: "/:base/eachShop/:shopId",
+        element: <EachShopView/>
+      },
      
     ]
   },
@@ -108,6 +117,14 @@ const router = createBrowserRouter([
           path: "/customerhome/allCakes/placeAnOrder/:cakeId",
           element: <PlaceAnOrder/>
         },
+        {
+          path: "/customerhome/allCakes/viewSingleCake/:cakeId",
+          element: <SingleCakeView/>
+        },
+        {
+          path: "/customerhome/:base/eachShop/:shopId",
+          element: <EachShopView/>
+        }
       ]
   },
 

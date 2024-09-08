@@ -168,7 +168,11 @@ const ShopPannelButtonSet = ({Data}) => {
   const location = useLocation()
   return (
     <div className="w-full h-full flex justify-center items-center gap-2">
-      <CiZoomIn className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-0 duration-1000" />
+
+  
+      <Link to={`${location.pathname}/viewSingleCake/${Data._id}`} className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000">
+      <CiZoomIn className="w-full h-full"/>
+      </Link>
 
       <Link to={`${location.pathname}/placeAnOrder/${Data._id}`} className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000">
       <CiShoppingCart className="w-full h-full"/>
@@ -176,7 +180,11 @@ const ShopPannelButtonSet = ({Data}) => {
 
       <CiHeart className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-150 duration-1000" />
 
-      <CiShop className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-sm rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-200 duration-1000" />
+      {/* <CiShop className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-sm rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-200 duration-1000" /> */}
+
+      <Link to={`${location.pathname}/eachShop/${Data._id}`} className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000">
+      <CiShop className="w-full h-full"/>
+      </Link>
     </div>
   );
 };
