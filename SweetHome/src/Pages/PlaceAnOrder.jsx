@@ -17,7 +17,6 @@ const PlaceAnOrder = () => {
   const [singleUserData,setSingleUserData]=useState()
   const [isLoading,setIsLoading]=useState(true)
 
-  const [orderFromData,setOrderFromData]=useState(null)
 
   // Debugging output
   // console.log("Current Path:", location.pathname);

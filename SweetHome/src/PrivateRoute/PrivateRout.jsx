@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 const PrivateRout = ({ placement, children }) => {
   const [user, setUser] = useState(null);
   const [reload, setReload] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const logedInUser = JSON.parse(localStorage.getItem("sweetHomeUser"));
@@ -14,6 +16,8 @@ const PrivateRout = ({ placement, children }) => {
       setUser(logedInUser);
     } else {
       console.error("No user found in localStorage.");
+      alert("no user Found please lig in or sign up")
+      navigate("/")
     }
   }, []);
 
