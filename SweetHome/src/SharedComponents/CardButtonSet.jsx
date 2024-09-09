@@ -13,6 +13,7 @@ import {
 } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import AddtoFavourite from "../Utility/AddtoFavourite";
+import AddToFevButton from "./AddToFevButton";
 
 
 
@@ -167,7 +168,7 @@ const CustomerOrderPanelButtonSet = ({ setReload, isCanceled, Data }) => {
 
 const ShopPannelButtonSet = ({Data}) => {
   const location = useLocation()
-  const navigate = useNavigate()
+  
   return (
     <div className="w-full h-full flex justify-center items-center gap-2">
 
@@ -180,12 +181,13 @@ const ShopPannelButtonSet = ({Data}) => {
       <CiShoppingCart className="w-full h-full"/>
       </Link>
 
-      {/* <Link to={`${location.pathname}/addToFavourite/${Data._id}`} className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000">
-      <CiHeart className="w-full h-full"/>
-      </Link> */}
 
-      <CiHeart className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-150 duration-1000" 
-      onClick={()=>AddtoFavourite(Data._id,navigate)} />
+      {/* <CiHeart className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-150 duration-1000" 
+      onClick={()=>AddtoFavourite(Data._id,navigate)} /> */}
+
+      <AddToFevButton
+      cakeId={Data._id}
+      />
 
       
 

@@ -29,6 +29,10 @@ const AddtoFavourite = async (cakeId,navigate) => {
         );
         const result = await request.json();
         console.log(result);
+        if(result.result.insertedId || result.result.modifiedCount)
+        {
+          alert(`${result.message}`)
+        }
       } catch (error) {
         console.log("clint side code error");
       }

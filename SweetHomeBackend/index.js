@@ -320,6 +320,24 @@ async function run() {
       }
     });
 
+    // find fev cake list
+    app.get("/customerFaveCakeList/:customerId",async(req,res)=>{
+      const {customerId}=req.params
+
+     try{
+      const request = await allFevouriteCollection.findOne({
+        customerId:customerId
+      })
+      // console.log(request)
+      res.send(request)
+     }
+     catch(error)
+     {
+      // console.log("error on server",error)
+      res.send({message:"something went wrong in server",error})
+     }
+    })
+
     //add cake to favourite list
     app.post(
       "/addCakeToThefavouriteList/:customerId/:cakeId",
@@ -339,20 +357,20 @@ async function run() {
                 { customerId: customerId },
                 { $pull: { fevCakeList: cakeId } }
               );
-              res.send(result);
+              res.send({message:"cake added to fevourite list",result});
             } else {
               const result = await allFevouriteCollection.updateOne(
                 { customerId: customerId },
                 { $addToSet: { fevCakeList: cakeId } }
               );
-              res.send(result);
+              res.send({message:"cake removed from fevourite list",result});
             }
           } else {
             const result = await allFevouriteCollection.insertOne({
               customerId: customerId,
               fevCakeList: [cakeId],
             });
-            res.send(result);
+            res.send({message:"cake added to fevourite list",result});
           }
         } catch (error) {
           res.send({ message: "sarver section code problem", error });
