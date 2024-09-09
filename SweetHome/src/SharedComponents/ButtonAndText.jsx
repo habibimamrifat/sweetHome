@@ -46,7 +46,7 @@ const ButtonWhite = ({ buttonInnerText }) => {
 
 const ButtonWhiteLink = ({ buttonInnerText,navigationLink }) => {
   return (
-    <Link className="w-full h-full bg-white flex justify-center items-center rounded-xl font-bold shadow-sm shadow-sky-800 hover:shadow-lg hover:shadow-sky-800 " to={`${navigationLink}`}>
+    <Link className="w-full min-h-10 max-h-full bg-white flex justify-center items-center rounded-xl font-bold shadow-sm shadow-sky-800 hover:shadow-lg hover:shadow-sky-800 " to={`${navigationLink}`}>
       <h2 className="z-10">{buttonInnerText}</h2>
     </Link>
   );
