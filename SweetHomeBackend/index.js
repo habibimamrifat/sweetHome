@@ -357,13 +357,13 @@ async function run() {
                 { customerId: customerId },
                 { $pull: { fevCakeList: cakeId } }
               );
-              res.send({message:"cake added to fevourite list",result});
+              res.send({message:"cake removed to fevourite list",result});
             } else {
               const result = await allFevouriteCollection.updateOne(
                 { customerId: customerId },
                 { $addToSet: { fevCakeList: cakeId } }
               );
-              res.send({message:"cake removed from fevourite list",result});
+              res.send({message:"cake added to fevourite list",result});
             }
           } else {
             const result = await allFevouriteCollection.insertOne({

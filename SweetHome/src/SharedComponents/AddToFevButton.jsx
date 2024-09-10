@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import UserAvalable from "../Utility/UserAvalable";
 import FindFevCakeList from "../Utility/FindFevCakeList";
 
-const AddToFevButton = ({ cakeId,setReload }) => {
+const AddToFevButton = ({ cakeId }) => {
   const navigate = useNavigate();
   const [isfavourite, setIsFavourite]=useState(false)
 
@@ -22,7 +22,7 @@ const AddToFevButton = ({ cakeId,setReload }) => {
         {
             // console.log("found")
             setIsFavourite(true)
-            setReload(true)
+           
         }
       }
       else{
