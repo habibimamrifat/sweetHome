@@ -166,7 +166,7 @@ const CustomerOrderPanelButtonSet = ({ setReload, isCanceled, Data }) => {
   );
 };
 
-const ShopPannelButtonSet = ({Data}) => {
+const ShopPannelButtonSet = ({Data,setReload}) => {
   const location = useLocation()
   
   return (
@@ -187,6 +187,7 @@ const ShopPannelButtonSet = ({Data}) => {
 
       <AddToFevButton
       cakeId={Data._id}
+      setReload={setReload}
       />
 
       

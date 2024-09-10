@@ -44,7 +44,9 @@ const CakeCard = ({ placement, Data, setReload }) => {
 
             shopPannel: (
             <ShopPannelButtonSet
-            Data={Data} />
+            Data={Data} 
+            setReload={setReload}
+            />
             ),
 
             customerOrderPannel: (

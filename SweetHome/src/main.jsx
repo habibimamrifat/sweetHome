@@ -26,6 +26,7 @@ import AddCakes from './Pages/AddCakes.jsx';
 import SingleOrderView from './Pages/SingleOrderView.jsx';
 import PlaceAnOrder from './Pages/PlaceAnOrder.jsx';
 import SingleCakeView from './Pages/SingleCakeView.jsx';
+import AllFavuriteCake from './Pages/AllFavuriteCake.jsx';
 
 const router = createBrowserRouter([
 
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
         {
           path: "/customerhome/:base/eachShop/:shopId",
           element: <EachShopView/>
+        },
+        {
+          path: "/customerhome/fevList/:customerId",
+          element: <AllFavuriteCake/>
         }
       ]
   },

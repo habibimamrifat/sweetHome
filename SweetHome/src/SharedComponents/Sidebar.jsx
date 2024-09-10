@@ -41,6 +41,10 @@ useEffect(()=>{
         routName: "All Orders",
         routHttp: `allorders/${user._id}`,
       },
+      {
+        routName: "All Favourite",
+        routHttp: `/customerhome/fevList/${user._id}`,
+      },
     ];
     mapRout.current = customerRout;
   } else if (user && placement === "baker") {

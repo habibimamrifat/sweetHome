@@ -236,7 +236,7 @@ async function run() {
     });
     // all shop collection for market place up
 
-    //all customer related apis are here down............
+    //all customer related apis are here down...........
 
     // create a customer
     app.post("/signUpPage/customerSignUp", async (req, res) => {
@@ -516,7 +516,7 @@ async function run() {
       }
     });
 
-    // all baker related apis are here up...........
+    // all baker related apis are here up.........
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

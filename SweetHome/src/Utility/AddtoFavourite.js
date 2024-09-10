@@ -32,6 +32,7 @@ const AddtoFavourite = async (cakeId,navigate) => {
         if(result.result.insertedId || result.result.modifiedCount)
         {
           alert(`${result.message}`)
+          navigate(`/customerhome/fevList/${loggedInUser._id}`)
         }
       } catch (error) {
         console.log("clint side code error");
