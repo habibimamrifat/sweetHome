@@ -6,6 +6,7 @@ import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
 // for file reading
 import fs from "fs";
+import { resolveMx } from "dns";
 
 // middleWare
 app.use(cors());
@@ -392,6 +393,21 @@ async function run() {
       res.send(result);
     });
 
+    // find singleShop
+    app.get("/baker/findSingleShop/:shopId", async(req, res)=>{
+      const {shopId} = req.params
+      console.log("shopId",shopId)
+      try{
+        const shopData = await allShopCollection.findOne({_id :new ObjectId(shopId)})
+        console.log(shopData)
+        res.send(shopData)
+      }
+      catch(error)
+      {
+        res.send({message:'something went wrong fetching single Shop',error})
+      }
+    })
+
     //create a shop***
     app.post("/signUpPage/bakerSignUp/createShop", async (req, res) => {
       const shop = req.body;
@@ -485,6 +501,8 @@ async function run() {
         res.send({message:"something went wrong",error})
       }
     })
+
+    // all cake of a Baker
 
     //Gather All Order of the Baker
     app.get("/bakerAllOrderCollection/:shopId", async (req, res) => {

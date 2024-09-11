@@ -203,7 +203,7 @@ const ShopPannelButtonSet = ({Data,setReload}) => {
 
       
 
-      <Link to={`${location.pathname}/eachShop/${Data._id}`} className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000">
+      <Link to={`${location.pathname}/eachShop/${Data.shop_id}`} className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000">
       <CiShop className="w-full h-full"/>
       </Link>
     </div>

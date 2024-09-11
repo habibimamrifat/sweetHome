@@ -13,25 +13,28 @@ const AddToFevButton = ({ cakeId }) => {
   useEffect(() => {
     const isAddedtoFevList = async () => {
       const loggedUser = UserAvalable();
-      if(loggedUser.loggedUser && !loggedUser.loggedUser.shopid)
-      {
-        // console.log("this is customer")
-        const result = await FindFevCakeList(loggedUser.loggedUser._id)
-        console.log("customer fev",result.fevCakeList)
-        if(result.fevCakeList.includes(cakeId))
-        {
-            // console.log("found")
-            setIsFavourite(true)
-           
+      
+      if (loggedUser.loggedUser && !loggedUser.loggedUser.shopid)
+       {
+       
+        const result = await FindFevCakeList(loggedUser.loggedUser._id);
+        
+        if (result && result.fevCakeList) 
+        { 
+          if (result.fevCakeList.includes(cakeId)) {
+            setIsFavourite(true);
+          }
         }
-      }
-      else{
-        console.log("no Customer logged in")
+      } else {
+        console.log("no Customer logged in");
       }
     };
-    
+
     isAddedtoFevList();
-  }, []);
+  }, [cakeId]);
+
+
+
   return (
     <CiHeart
       className={`bg-gradient-to-tr ${isfavourite ? "from-red-800 to-red-500 ":" from-primary to-secondary"} h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-150 duration-1000`}

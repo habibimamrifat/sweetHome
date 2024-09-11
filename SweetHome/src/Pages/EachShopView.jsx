@@ -1,12 +1,19 @@
-import { useLoaderData, useParams } from "react-router-dom"
+import { useEffect } from "react"
+import { useParams } from "react-router-dom"
+import FindSingleShop from "../Utility/FindSingleShop"
 
 const EachShopView = () => {
 
-  const {id} = useParams()
-  console.log(id)
+  const {shopId} = useParams()
+  console.log(shopId)
 
-  const found = useLoaderData()
-  console.log("i am all data", found)
+  useEffect(()=>{
+    const gatherRequaredData = async(shopId)=>{
+      const shopData = await FindSingleShop(shopId)
+      console.log(shopData)
+    }
+    gatherRequaredData(shopId)
+  },[shopId])
 
   return (
     <div>
