@@ -66,6 +66,7 @@ const CakeCard = ({ placement, Data, setReload }) => {
             bakerCakeCollectionPanel: (
               <BakerCakeCollectionPannelButtonSet
                Data={Data} 
+               setReload={setReload}
                />
             ),
 

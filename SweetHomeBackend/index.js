@@ -205,7 +205,10 @@ async function run() {
 
     // all cake collection for market place down
     app.get("/", async (req, res) => {
-      const result = await allCakeCollection.find().toArray();
+      const result = await allCakeCollection.find({$or: [
+        { deleted: { $exists: false } },
+        { deleted: false }
+      ]}).toArray();
       res.send(result);
     });
     // all cake collection for market place up
@@ -380,7 +383,7 @@ async function run() {
 
     //all customer related apis are here up.............
 
-    // all baker related apis are here down............
+    // all baker related apis are here down...........
 
     // create a bacer****
     app.post("/signUpPage/bakerSignUp", async (req, res) => {
@@ -437,7 +440,10 @@ async function run() {
 
       try {
         const result = await allCakeCollection
-          .find({ shop_id: shopId })
+          .find({ shop_id: shopId, $or: [
+            { deleted: { $exists: false } },
+            { deleted: false }
+          ]})
           .toArray();
         res.send(result);
       } catch (error) {
@@ -457,6 +463,28 @@ async function run() {
         res.send({ message: "failed to insert in cake colletion", error });
       }
     });
+
+    // delete a cake
+    app.put("/baker/deleteCake/:shopId/:cakeId", async(req,res)=>
+    {
+      const {shopId,cakeId}=req.params
+      const update = req.body
+      // console.log("shop",shopId,"cake",cakeId,"upa", update)
+
+      try{
+        const result = await allCakeCollection.updateOne(
+          {_id: new ObjectId(cakeId),shop_id:shopId},
+          {$set:update},
+          {upsert:true})
+
+          res.send(result)
+      }
+      catch(error)
+      {
+        console.log({message:"something went wrong",error})
+        res.send({message:"something went wrong",error})
+      }
+    })
 
     //Gather All Order of the Baker
     app.get("/bakerAllOrderCollection/:shopId", async (req, res) => {

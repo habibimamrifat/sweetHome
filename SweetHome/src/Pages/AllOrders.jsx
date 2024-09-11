@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import CakeCard from '../SharedComponents/CakeCard';
 import CustomLoader from '../SharedComponents/CustomLoader';
 import { UserContext } from '../PrivateRoute/PrivateRout';
+import AllOrderButtons from '../SharedComponents/AllOrderButtons';
 
 const AllOrders = ({ placement }) => {
   const [data, setData] = useState([]); // Initialize with an empty array to avoid undefined issues
@@ -12,25 +13,29 @@ const AllOrders = ({ placement }) => {
   const { shopId, customerId } = useParams();
   const cusOrBekerId = useRef('');
   const foundData = useRef([]);
-  const [orderList, setOrderList] = useState('allAvailableOrder');
+  const [orderList, setOrderList] = useState('allOrder');
 
-  if (placement === 'bakerOrderPannel') {
-    cusOrBekerId.current = shopId;
-    httpLink.current = 'http://localhost:5000/bakerAllOrderCollection';
-  } else if (placement === 'customerOrderPannel') {
-    cusOrBekerId.current = customerId;
-    httpLink.current = 'http://localhost:5000/customerAllOrderCollection';
-  }
+  // Set the API link and identifier based on placement
+  useEffect(() => {
+    if (placement === 'bakerOrderPannel') {
+      cusOrBekerId.current = shopId;
+      httpLink.current = 'http://localhost:5000/bakerAllOrderCollection';
+    } else if (placement === 'customerOrderPannel') {
+      cusOrBekerId.current = customerId;
+      httpLink.current = 'http://localhost:5000/customerAllOrderCollection';
+    }
+  }, [placement, shopId, customerId]);
 
+  // Fetch data based on the placement and reload state
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true); // Set loading state before fetching
       try {
         const request = await fetch(`${httpLink.current}/${cusOrBekerId.current}`);
-
         if (request.ok) {
           const response = await request.json();
           foundData.current = response;
-          setData(response || []); // Initialize with an empty array if response is undefined
+          setData(response || []);
         } else {
           alert('Something went wrong during fetching data');
         }
@@ -38,63 +43,61 @@ const AllOrders = ({ placement }) => {
         console.log('Something went wrong in data fetching for all orders', error);
       } finally {
         setIsLoading(false);
+        setReload(false); // Reset the reload flag after fetching
       }
     };
 
+    // Fetch data only if reload is true or when the component is first loaded
     if (reload || isLoading) {
       fetchData();
-      setReload(false); // Reset the reload flag after fetching
     }
   }, [reload, isLoading, setReload]);
 
-  // Add a useEffect to handle filtering based on the orderList state change
+  // Handle filtering based on the orderList state and fetched data
   useEffect(() => {
     if (foundData.current && foundData.current.length > 0) {
       let filteredData = [];
 
-      switch (orderList) {
-        case 'allCanceledOrder':
-          filteredData = foundData.current.filter((eachOrder) => eachOrder.status.canceled);
-          break;
-        case 'allAcceptedOrder':
-          filteredData = foundData.current.filter((eachOrder) => eachOrder.status.accepted);
-          break;
-        case 'allCookingOrder':
-          filteredData = foundData.current.filter((eachOrder) => eachOrder.status.cooking);
-          break;
-        case 'allShippingOrder':
-          filteredData = foundData.current.filter((eachOrder) => eachOrder.status.shipping);
-          break;
-        case 'allAvailableOrder':
-          filteredData = foundData.current.filter((eachOrder) => !eachOrder.status.canceled);
-          break;
-        default:
-          filteredData = foundData.current; // Default to all orders
+      if (placement === 'bakerOrderPannel') {
+        switch (orderList) {
+          case 'allOrder':
+            filteredData = foundData.current;
+            break;
+          case 'allCanceledOrder':
+            filteredData = foundData.current.filter((eachOrder) => eachOrder.status.canceled);
+            break;
+          case 'allAcceptedOrder':
+            filteredData = foundData.current.filter((eachOrder) => eachOrder.status.accepted && !eachOrder.status.cooking);
+            break;
+          case 'allCookingOrder':
+            filteredData = foundData.current.filter((eachOrder) => eachOrder.status.cooking && !eachOrder.status.shipping);
+            break;
+          case 'allShippingOrder':
+            filteredData = foundData.current.filter((eachOrder) => eachOrder.status.shipping && !eachOrder.status.canceled);
+            break;
+          case 'allAvailableOrder':
+            filteredData = foundData.current.filter((eachOrder) => !eachOrder.status.canceled);
+            break;
+          default:
+            filteredData = foundData.current; // Default to all orders
+        }
+        setData(filteredData);
+      } else if (placement === 'customerOrderPannel') {
+        filteredData = foundData.current.filter((eachOrder) => !eachOrder.status.canceled);
+        setData(filteredData);
       }
-
-      setData(filteredData);
     }
-  }, [orderList]); // Re-run this effect whenever orderList changes
+  }, [orderList, placement, foundData.current]); // Re-run this effect whenever orderList or placement changes
 
   return (
     <div className="bg-blue-50 h-full w-full overflow-scroll">
-      <div className='flex gap-5'>
-        <button onClick={() => setOrderList("allAvailableOrder")}>
-          Available Orders
-        </button>
-        <button onClick={() => setOrderList("allAcceptedOrder")}>
-          Accepted Orders
-        </button>
-        <button onClick={() => setOrderList("allCookingOrder")}>
-          Cooking Orders
-        </button>
-        <button onClick={() => setOrderList("allShippingOrder")}>
-          Shipping Orders
-        </button>
-        <button onClick={() => setOrderList("allCanceledOrder")}>
-          Canceled Orders
-        </button>
-      </div>
+      {placement === 'bakerOrderPannel' && (
+        <AllOrderButtons
+          orderList={orderList}
+          setOrderList={setOrderList}
+        />
+      )}
+
       {isLoading ? (
         <CustomLoader />
       ) : data && data.length > 0 ? ( // Now data will always be an array, so no undefined error

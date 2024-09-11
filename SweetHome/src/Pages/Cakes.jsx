@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 const Cakes = ({ placement = "shopPannel" }) => {
   const [AllCakes, setAllCakes] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
+  const [reload,setReload]=useState(true)
 
   const { shopId } = useParams();
   console.log("the shopId is", shopId);
@@ -13,10 +14,13 @@ const Cakes = ({ placement = "shopPannel" }) => {
   const shopIdRef = useRef();
   const allCakeFetchUrl = useRef("http://localhost:5000");
 
-  if (placement === "bakerCakeCollectionPanel" && shopId) {
+  if (placement === "bakerCakeCollectionPanel" && shopId) 
+  {
     const loggedUser = JSON.parse(localStorage.getItem("sweetHomeUser"));
     shopIdRef.current = loggedUser.shopId;
+
     console.log("I am triggered");
+
     allCakeFetchUrl.current = `http://localhost:5000/bakerAllCakeCollection/${shopIdRef.current}`;
   }
 
@@ -34,22 +38,36 @@ const Cakes = ({ placement = "shopPannel" }) => {
         console.log("Data fetching went wrong", error);
       } finally {
         setLoading(false); // Set loading to false after data is fetched
+        setReload(false)
       }
     };
-    allCakeFetch();
-  }, []);
+    if(reload)
+    {
+      allCakeFetch();
+    }
+    
+  }, [reload]);
 
   return (
     <div className="bg-blue-50 h-full w-full overflow-scroll">
-      {loading ? (
+      {
+      loading ? 
+      (
         <CustomLoader />
-      ) : AllCakes && AllCakes.length > 0 ? (
+      ) 
+      : 
+      AllCakes && AllCakes.length > 0 ? 
+      (
         <div className="flex justify-center flex-wrap mx-2 mt-2 gap-y-5 gap-x-5 pb-[200px]">
-          {AllCakes.map((cake, index) => (
-            <CakeCard placement={placement} Data={cake} key={index} />
+          {AllCakes.map((cake, index) => 
+          (
+            <CakeCard placement={placement} Data={cake} key={index}
+            setReload={setReload} />
           ))}
         </div>
-      ) : (
+      ) 
+      : 
+      (
         <h2>No cakes yet</h2>
       )}
     </div>

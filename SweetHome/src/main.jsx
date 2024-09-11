@@ -119,11 +119,25 @@ const router = createBrowserRouter([
           element: <PlaceAnOrder/>
         },
         {
+          path: "/customerhome/fevList/:customerId/placeAnOrder/:cakeId",
+          element: <PlaceAnOrder/>
+        },
+
+        {
           path: "/customerhome/allCakes/viewSingleCake/:cakeId",
           element: <SingleCakeView/>
         },
         {
+          path: "/customerhome/fevList/:customerId/viewSingleCake/:cakeId",
+          element: <SingleCakeView/>
+        },
+
+        {
           path: "/customerhome/:base/eachShop/:shopId",
+          element: <EachShopView/>
+        },
+        {
+          path: "/customerhome/fevList/:customerId/eachShop/:shopId",
           element: <EachShopView/>
         },
         {

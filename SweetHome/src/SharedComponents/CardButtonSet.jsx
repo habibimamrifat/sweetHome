@@ -14,6 +14,7 @@ import {
 import { MdDeleteForever } from "react-icons/md";
 import AddtoFavourite from "../Utility/AddtoFavourite";
 import AddToFevButton from "./AddToFevButton";
+import Deletecake from "../Utility/Deletecake";
 
 
 
@@ -64,7 +65,22 @@ const BakerOrderPnelButtonSet = ({ setReload, isCanceled, Data }) => {
   );
 };
 
-const BakerCakeCollectionPannelButtonSet = ({ Data }) => {
+const BakerCakeCollectionPannelButtonSet = ({ Data, setReload }) => {
+
+  const handledeleteClick = async (cakeId, setReload)=>{
+    const deleted= await Deletecake(cakeId)
+    if(deleted.acknowledged && deleted.modifiedCount)
+    {
+      alert("your cake has been deleted")
+      setReload(true)
+    }
+    else
+    {
+      console.log("something went wrong during deleting")
+    }
+  }
+
+  
   return (
     <div className="w-full h-full flex justify-center items-center gap-2">
       <Link
@@ -74,12 +90,11 @@ const BakerCakeCollectionPannelButtonSet = ({ Data }) => {
         <CiEdit className="w-full h-full" />
       </Link>
 
-      <Link
-        to={`/bakerhome/updateCakeData/${Data._id}`}
+      <button
         className="bg-gradient-to-tr from-orange-700 to-orange-400 h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-0 duration-1000"
-      >
+      onClick={()=>handledeleteClick(Data._id,setReload)}>
         <MdDeleteForever className="w-full h-full" />
-      </Link>
+      </button>
     </div>
   );
 };
@@ -180,10 +195,6 @@ const ShopPannelButtonSet = ({Data,setReload}) => {
       <Link to={`${location.pathname}/placeAnOrder/${Data._id}`} className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000">
       <CiShoppingCart className="w-full h-full"/>
       </Link>
-
-
-      {/* <CiHeart className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-150 duration-1000" 
-      onClick={()=>AddtoFavourite(Data._id,navigate)} /> */}
 
       <AddToFevButton
       cakeId={Data._id}
