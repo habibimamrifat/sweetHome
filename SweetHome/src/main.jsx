@@ -78,13 +78,26 @@ const router = createBrowserRouter([
         element: <PlaceAnOrder/>
       },
       {
+        path: "/allShops/eachShop/:shopId/placeAnOrder/:cakeId",
+        element: <PlaceAnOrder/>
+      },
+      {
+        path: "/allCakes/eachShop/:shopId/placeAnOrder/:cakeId",
+        element: <PlaceAnOrder/>
+      },
+      {
         path: "/allCakes/viewSingleCake/:cakeId",
+        element: <SingleCakeView/>
+      },
+      {
+        path: "/:base/eachShop/:shopId/viewSingleCake/:cakeId",
         element: <SingleCakeView/>
       },
       {
         path: "/:base/eachShop/:shopId",
         element: <EachShopView/>
       },
+      
      
     ]
   },
@@ -122,13 +135,25 @@ const router = createBrowserRouter([
           path: "/customerhome/fevList/:customerId/placeAnOrder/:cakeId",
           element: <PlaceAnOrder/>
         },
+        {
+          path: "/customerhome/allCakes/eachShop/:shopId/placeAnOrder/:cakeId",
+          element: <PlaceAnOrder/>
+        },
 
         {
           path: "/customerhome/allCakes/viewSingleCake/:cakeId",
           element: <SingleCakeView/>
         },
         {
+          path: "/customerhome/allCakes/eachShop/:shopId/viewSingleCake/:cakeId",
+          element: <SingleCakeView/>
+        },
+        {
           path: "/customerhome/fevList/:customerId/viewSingleCake/:cakeId",
+          element: <SingleCakeView/>
+        },
+        {
+          path: "/customerhome/allShops/eachShop/:shopId/viewSingleCake/:cakeId",
           element: <SingleCakeView/>
         },
 

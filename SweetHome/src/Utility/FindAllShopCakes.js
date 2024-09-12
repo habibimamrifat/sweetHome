@@ -2,7 +2,7 @@ import React from 'react'
 
 const FindAllShopCakes = async (shopId) => {
     try{
-      const request = await fetch(`http://localhost:5000/baker/findSingleShop/${shopId}`)
+      const request = await fetch(`http://localhost:5000/bakerAllCakeCollection/${shopId}`)
       const result = await request.json()
       return result;
     }

@@ -32,27 +32,27 @@ const PlaceAnOrder = () => {
 
   useEffect(() => {
     const fetchDataForTheForm = async () => {
-      if (
-        location.pathname.includes(`/customerhome/allCakes/placeAnOrder/${cakeId}`) ||
-        location.pathname.includes(`/customerhome/fevList/${user?._id}/placeAnOrder/${cakeId}`)
-      ) {
-        await fetchNecessaryData(cakeId, user._id);
-      } else if (location.pathname.startsWith(`/allCakes/placeAnOrder/${cakeId}`)) {
+      
         const loggedInUser = JSON.parse(localStorage.getItem("sweetHomeUser"));
-        if (loggedInUser) {
+        if (loggedInUser) 
+          {
           if (loggedInUser.shopId) {
             alert("Please create a customer account.");
             navigate("/customerSignIn");
-          } else {
+          } 
+          else 
+          {
             await fetchNecessaryData(cakeId, loggedInUser._id);
           }
-        } else {
+        } 
+        else 
+        {
           alert("Please log into customer ID or create an account.");
           navigate("/customerSignIn");
         }
-      } else {
-        console.log("No matching path");
-      }
+       
+    
+     
     };
 
     fetchDataForTheForm();

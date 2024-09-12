@@ -5,6 +5,7 @@ import {
   BakerOrderPnelButtonSet,
   CustomerOrderPanelButtonSet,
   ShopPannelButtonSet,
+  SingleShopCakePannel,
 } from "./CardButtonSet";
 import UpdateOrder from "../Utility/UpdateOrder";
 
@@ -44,6 +45,13 @@ const CakeCard = ({ placement, Data, setReload }) => {
 
             shopPannel: (
             <ShopPannelButtonSet
+            Data={Data} 
+            setReload={setReload}
+            />
+            ),
+
+            singleShopCakePannel: (
+            <SingleShopCakePannel
             Data={Data} 
             setReload={setReload}
             />

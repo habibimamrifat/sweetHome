@@ -396,10 +396,10 @@ async function run() {
     // find singleShop
     app.get("/baker/findSingleShop/:shopId", async(req, res)=>{
       const {shopId} = req.params
-      console.log("shopId",shopId)
+      // console.log("shopId",shopId)
       try{
         const shopData = await allShopCollection.findOne({_id :new ObjectId(shopId)})
-        console.log(shopData)
+        // console.log(shopData)
         res.send(shopData)
       }
       catch(error)
@@ -502,8 +502,6 @@ async function run() {
       }
     })
 
-    // all cake of a Baker
-
     //Gather All Order of the Baker
     app.get("/bakerAllOrderCollection/:shopId", async (req, res) => {
       const { shopId } = req.params;
@@ -562,7 +560,7 @@ async function run() {
       }
     });
 
-    // all baker related apis are here up.........
+    // all baker related apis are here up....
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

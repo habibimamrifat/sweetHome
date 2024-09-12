@@ -15,7 +15,7 @@ const PrivateRout = ({ placement, children }) => {
     if (logedInUser) {
       setUser(logedInUser);
     } else {
-      console.error("No user found in localStorage.");
+      // console.error("No user found in localStorage.");
       alert("no user Found please lig in or sign up")
       navigate("/")
     }

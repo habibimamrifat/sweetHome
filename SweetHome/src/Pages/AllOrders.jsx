@@ -13,7 +13,7 @@ const AllOrders = ({ placement }) => {
   const { shopId, customerId } = useParams();
   const cusOrBekerId = useRef('');
   const foundData = useRef([]);
-  const [orderList, setOrderList] = useState('allOrder');
+  const [orderList, setOrderList] = useState('allAvailableOrder');
 
   // Set the API link and identifier based on placement
   useEffect(() => {
@@ -82,7 +82,8 @@ const AllOrders = ({ placement }) => {
             filteredData = foundData.current; // Default to all orders
         }
         setData(filteredData);
-      } else if (placement === 'customerOrderPannel') {
+      } 
+      else if (placement === 'customerOrderPannel') {
         filteredData = foundData.current.filter((eachOrder) => !eachOrder.status.canceled);
         setData(filteredData);
       }
