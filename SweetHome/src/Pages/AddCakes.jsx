@@ -6,6 +6,7 @@ import { UserContext } from '../PrivateRoute/PrivateRout'
 const AddCakes = () => {
   const { user} = useContext(UserContext)
   const navigate = useNavigate()
+
   const gatheredCakeData = async (cakeInfo)=>
   {
     console.log("parents",cakeInfo)
@@ -26,6 +27,7 @@ const AddCakes = () => {
       alert("adding cake failed")
     }
   }
+  
   return (
     <div className='h-full w-full overflow-scroll pb-[200px]'>
      <AddACakeForm
