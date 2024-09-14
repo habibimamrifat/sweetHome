@@ -165,7 +165,7 @@ const client = new MongoClient(uri, {
 const dataInjection = async (collectionName) => {
   try {
     const injectCakeData = JSON.parse(
-      fs.readFileSync("./Data/OrderData.json", "utf8")
+      fs.readFileSync("./Data/FevCakeData.json", "utf8")
     );
 
     const result = await collectionName.insertMany(injectCakeData);
@@ -202,7 +202,7 @@ async function run() {
 
     // all the collection of the data base up
 
-    // await dataInjection(allOrderCollection)
+    // await dataInjection(allFevouriteCollection)
 
     // all cake collection for market place down
     app.get("/", async (req, res) => {
