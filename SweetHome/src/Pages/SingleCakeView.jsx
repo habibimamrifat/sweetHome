@@ -3,13 +3,12 @@ import { useLocation, useParams } from "react-router-dom";
 import FindSingleCake from "../Utility/FindSingleCake";
 import { ButtonWhiteLink } from "../SharedComponents/ButtonAndText";
 
-const SingleCakeView = () => {
+const SingleCakeView = ({ placement = "customer" }) => {
   const { cakeId } = useParams();
-  console.log("single cake", cakeId)
+  console.log("single cake", cakeId);
   const [cakeInfo, setCakeInfo] = useState();
 
   useEffect(() => {
-   
     const gatherData = async (cakeId) => {
       // console.log(cakeId)
       try {
@@ -17,7 +16,7 @@ const SingleCakeView = () => {
         console.log(singlecake);
         setCakeInfo(singlecake);
       } catch (error) {
-        console.log("error occared during fetching",error);
+        console.log("error occared during fetching", error);
       }
     };
     gatherData(cakeId);
@@ -26,7 +25,11 @@ const SingleCakeView = () => {
   return (
     <div className="w-full h-full overflow-scroll pb-[200px]">
       <div className="w-full h-[75vh]">
-        <img src={cakeInfo?.cake_pic} alt="" className="w-full h-full object-fill" />
+        <img
+          src={cakeInfo?.cake_pic}
+          alt=""
+          className="w-full h-full object-fill"
+        />
       </div>
 
       <div className="mt-5 mx-5">
@@ -59,11 +62,17 @@ const SingleCakeView = () => {
       </div>
 
       <div className="flex justify-between flex-wrapn gap-4 mt-5 mx-5">
-
-        <ButtonWhiteLink
-        navigationLink={`/customerhome/allCakes/placeAnOrder/${cakeInfo?._id}`}
-        buttonInnerText={"Order Now"}
-        />
+        {placement !== "customer" ? (
+          <ButtonWhiteLink
+            navigationLink={`/bakerhome/updateCakeData/${cakeInfo?._id}`}
+            buttonInnerText={"Update"}
+          />
+        ) : (
+          <ButtonWhiteLink
+            navigationLink={`/customerhome/allCakes/placeAnOrder/${cakeInfo?._id}`}
+            buttonInnerText={"Order Now"}
+          />
+        )}
       </div>
     </div>
   );

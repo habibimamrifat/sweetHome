@@ -66,7 +66,6 @@ const BakerOrderPnelButtonSet = ({ setReload, isCanceled, Data }) => {
 };
 
 const BakerCakeCollectionPannelButtonSet = ({ Data, setReload }) => {
-
   const handledeleteClick = async (cakeId, setReload)=>{
     const deleted= await Deletecake(cakeId)
     if(deleted.acknowledged && deleted.modifiedCount)
@@ -83,6 +82,11 @@ const BakerCakeCollectionPannelButtonSet = ({ Data, setReload }) => {
   
   return (
     <div className="w-full h-full flex justify-center items-center gap-2">
+
+      <Link to={`/bakerhome/allCakes/viewSingleCake/${Data._id}`} className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-100 duration-1000">
+      <CiZoomIn className="w-full h-full"/>
+      </Link>
+
       <Link
         to={`/bakerhome/updateCakeData/${Data._id}`}
         className="bg-gradient-to-tr from-primary to-secondary h-[60%] w-1/5 text-xl rounded-xl text-white border-2 hover:border-sky-500  translate-y-56 group-hover:translate-y-0 delay-0 duration-1000"

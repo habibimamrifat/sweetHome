@@ -480,6 +480,26 @@ async function run() {
       }
     });
 
+    // updateCake
+    app.put("/baker/UpdateACake/:cakeId",async(req,res)=>{
+      const {cakeId} = req.params
+      const updateCake = req.body
+      // console.log(cakeId,updateCake)
+
+      try{
+        const result = await allCakeCollection.updateOne(
+          {_id: new ObjectId(cakeId)},
+          {$set:updateCake},
+          {upsert:true}
+        )
+        res.send(result)
+      }
+      catch(error)
+      {
+        res.send({message:"coudnt update cake",error})
+      }
+    })
+
     // delete a cake
     app.put("/baker/deleteCake/:shopId/:cakeId", async(req,res)=>
     {
@@ -560,7 +580,7 @@ async function run() {
       }
     });
 
-    // all baker related apis are here up....
+    // all baker related apis are here up.....
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

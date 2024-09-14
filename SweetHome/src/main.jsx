@@ -16,7 +16,6 @@ import Shops from './Pages/Shops.jsx';
 import CustomerSignUp from './Pages/CustomerSignUp.jsx';
 import BakerSignup from './Pages/BakerSignup.jsx';
 import EachShopView from './Pages/EachShopView.jsx';
-import LoaderSingleShop from './CustomDataLoader/LoaderSingleShop.js';
 import BakerHome from './LayOut/BakerHome.jsx';
 import  CustomerHome from "./LayOut/CustomerHome.jsx"
 import PrivateRout from './PrivateRoute/PrivateRout.jsx';
@@ -210,12 +209,15 @@ const router = createBrowserRouter([
           path:"baker/viewSingleOrder/:orderId",
           element:<SingleOrderView/>
         },
-      ]
-  },
-  
 
- 
- 
+        {
+          path:"/bakerhome/allCakes/viewSingleCake/:cakeId",
+          element:<SingleCakeView
+          placement={'bakerHome'}
+          />
+        }
+      ]
+  }, 
 
 ]);
 
