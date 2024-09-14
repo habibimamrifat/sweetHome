@@ -4,6 +4,12 @@ const port = process.env.Port || 5000;
 import cors from "cors";
 import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
+import dotenv from "dotenv"
+dotenv.config()
+
+const M_userName = process.env.Mongo_User_Name
+const M_password =process.env.Mongo_User_Password
+
 // for file reading
 import fs from "fs";
 import { resolveMx } from "dns";
@@ -152,7 +158,7 @@ const allShopCollectionFake = [
 //*************************************************** */
 
 const uri =
-  "mongodb+srv://habibrifatx21:ioyWWVgEzeH8GfNc@sweethome.gfjhoj6.mongodb.net/?retryWrites=true&w=majority&appName=SweetHome";
+  `mongodb+srv://${M_userName}:${M_password}@sweethome.gfjhoj6.mongodb.net/?retryWrites=true&w=majority&appName=SweetHome`;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
